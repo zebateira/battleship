@@ -1,0 +1,32 @@
+class Tree2
+	types
+		public edge:: no1: nat1 
+     		no2: nat1;
+	values
+-- TODO Define values here
+	instance variables
+		public Root : nat1:=0; 
+		 public Edges : set of edge := {};
+		 --inv2
+		 inv exists e in set Edges & e.no1=Root or e.no2=Root;
+		 --inv4 (Simplificado. Para calcular as folhas, punha-se numa seq e contava-se os repetidos.)
+		 inv forall p1,p2 in set {e.no2 | e in set Edges}\{e.no1 | e in set Edges} &
+		 	abs(dist(p1) - dist(p2)) <= 1;
+		 	 
+		 
+		 
+		 
+--inv1 Uma árvore com n nós tem n-1 arestas (grafo acíclico).  
+--inv2 A raíz da árvore (Root) tem que ser um nó da árvore. 
+--inv3 A árvore tem que ser conexa. 
+--inv4 A árvore é balanceada (folhas a uma distância d ou d+1 da raíz) 
+--inv5 entre dois nós arbitrários da árvore existe um único caminho. 
+
+	
+	operations
+-- TODO Define operations here
+	functions
+-- TODO Define functiones here
+	traces
+-- TODO Define Combinatorial Test Traces here
+end Tree2

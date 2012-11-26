@@ -1,0 +1,19 @@
+class Tree
+	types
+-- TODO Define types here
+	values
+-- TODO Define values here
+	instance variables
+	     public root : nat1;  
+	     public edge : map nat1 to nat1; 
+	operations
+		public Leaves: () ==> set of nat1
+		Leaves() ==
+		(
+			return (rng edges)\(dom edges);
+		);
+	functions
+-- TODO Define functiones here
+	traces
+-- TODO Define Combinatorial Test Traces here
+end Tree

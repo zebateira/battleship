@@ -1,0 +1,42 @@
+class Poligono
+	types
+		public ponto:: 	x: nat1 
+            			y: nat1;
+		public segrecta:: ponto
+							ponto;
+	values
+-- TODO Define values here
+	instance variables
+		public lados : seq of ponto := []; 
+ 		public angulos: map ponto to nat1 := {|->};
+ 		
+	operations
+		public ai:Poligono ==> bool
+		ai(p) == return card(rng p.angulos) = 1;
+		
+		public Remove : Poligono * ponto ==> Poligono
+		Remove(pol, p) ==
+		( 
+			dcl g: Poligono := new Poligono(); 
+			let L1 ^ [p] ^ L2 = pol.lados in (
+				g.lados := L1 ^ L2;
+				g.angulos := {p} <-: pol.angulos;
+				return g;
+			)
+		)
+		pre p not in set elems pol.lados
+		post p not in set elems RESULT.lados;
+		
+		public Diagonais: () ==> set of segrecta
+		Diagonais() ==
+			return { mk_segrecta(a,b) |
+				a in set elems lados,
+				b in set elems lados &
+				not exists i in set elems lados &
+					lados(i,...,i+1) = [a,b] or
+					lados(i,...,i+1) = [b,a] }
+	functions
+-- TODO Define functiones here
+	traces
+-- TODO Define Combinatorial Test Traces here
+end Poligono

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench progressCount="17" version="2.0">
+<workbenchAdvisor/>
+<window height="741" maximized="true" width="1024" x="232" y="139">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout>
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="136" y="34"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="124" y="34"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="52" y="34"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="188" y="34"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.overture.ide.vdmpp.ui.VdmPpEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1353607973091" focus="true" label="Workspace - VDM">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Board.vdmpp" partName="Board.vdmpp" path="/home/sidner/FEUP/mfes/battleship/overture/Battleship/battleship/Board.vdmpp" title="Board.vdmpp" tooltip="Battleship/battleship/Board.vdmpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Battleship/battleship/Board.vdmpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="374" selectionTopPixel="61"/>
+</editor>
+<editor id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="GameEngine.vdmpp" partName="GameEngine.vdmpp" path="/home/sidner/FEUP/mfes/battleship/overture/Battleship/battleship/GameEngine.vdmpp" title="GameEngine.vdmpp" tooltip="Battleship/battleship/GameEngine.vdmpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Battleship/battleship/GameEngine.vdmpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="House.vdmpp" partName="House.vdmpp" path="/home/sidner/FEUP/mfes/battleship/overture/Battleship/battleship/House.vdmpp" title="House.vdmpp" tooltip="Battleship/battleship/House.vdmpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Battleship/battleship/House.vdmpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="19" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Player.vdmpp" partName="Player.vdmpp" path="/home/sidner/FEUP/mfes/battleship/overture/Battleship/battleship/Player.vdmpp" title="Player.vdmpp" tooltip="Battleship/battleship/Player.vdmpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Battleship/battleship/Player.vdmpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Ship.vdmpp" partName="Ship.vdmpp" path="/home/sidner/FEUP/mfes/battleship/overture/Battleship/battleship/Ship.vdmpp" title="Ship.vdmpp" tooltip="Battleship/battleship/Ship.vdmpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Battleship/battleship/Ship.vdmpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="VDMUnit.vdmpp" partName="VDMUnit.vdmpp" path="/home/sidner/FEUP/mfes/battleship/overture/Battleship/lib/VDMUnit.vdmpp" title="VDMUnit.vdmpp" tooltip="Battleship/lib/VDMUnit.vdmpp" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Battleship/lib/VDMUnit.vdmpp"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1136"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Warnings (3 items)"/>
+</expanded>
+<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console"/>
+<view id="org.eclipse.pde.runtime.LogView" partName="Error Log">
+<viewState activate="true" allSessions="true" column2="300" column3="150" column4="886" error="true" groupBy="0" info="true" limit="50" ok="true" orderType="2" orderValue="-1" show_filter_text="true" useLimit="true" warning="true"/>
+</view>
+<view id="org.overture.ide.ui.VdmExplorer" partName="VDM Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="1" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks"/>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.overture.ide.plugins.quickinterpreter.viewinterpreter" partName="VDM Quick Interpreter"/>
+</views>
+<perspectives activePart="org.overture.ide.vdmpp.ui.VdmPpEditor" activePerspective="org.overture.ide.ui.perspective">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.overture.ide.ui.perspective.VdmPerspectiveFactory" id="org.overture.ide.ui.perspective" label="VDM"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.pde.runtime.LogView"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.overture.ide.plugins.quickinterpreter.viewinterpreter"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.overture.ide.ui.VdmExplorer"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@75338e4c">
+<folder activePageID="org.overture.ide.ui.VdmExplorer" appearance="2" expanded="2">
+<page content="org.overture.ide.ui.VdmExplorer" label="VDM Explorer"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@715363a8" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75338e4c">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+</folder>
+</info>
+<info folder="true" part="bottom" ratio="0.7491749" ratioLeft="454" ratioRight="152" relationship="4" relative="org.eclipse.ui.internal.ViewStack@75338e4c">
+<folder activePageID="org.eclipse.pde.runtime.LogView" appearance="2" expanded="2">
+<page content="org.eclipse.pde.runtime.LogView" label="Error Log"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.overture.ide.plugins.quickinterpreter.viewinterpreter" label="VDM Quick Interpreter"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@2aa1e1d8" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75338e4c">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.24966975" ratioLeft="189" ratioRight="568" relationship="2" relative="org.eclipse.ui.internal.ViewStack@75338e4c"/>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Poligono/Poligono.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Tree/Tree.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Tree2/Tree2.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Tree/Tree.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Tree2/Tree2.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battheship/battleship/Board.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battheship/battleship/GameEngine.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battheship/battleship/House.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battheship/battleship/Player.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battheship/battleship/Ship.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/lib/VDMUnit.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/battleship/Board.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/battleship/GameEngine.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/battleship/House.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/battleship/Player.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/battleship/Ship.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/lib/IO.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Poligono/Poligono.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Tree/Tree.vdmpp"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" path="/Battleship/lib/MATH.vdmpp"/>
+</editors>
+<item historyLabel="Tree.vdmpp" index="1">
+<position info="not_deleted" x="269" y="0"/>
+</item>
+<item historyLabel="Poligono.vdmpp" index="0">
+<position info="not_deleted" x="834" y="0"/>
+</item>
+<item historyLabel="Tree.vdmpp" index="1">
+<position info="not_deleted" x="269" y="0"/>
+</item>
+<item historyLabel="Poligono.vdmpp" index="0">
+<position info="not_deleted" x="834" y="0"/>
+</item>
+<item historyLabel="Tree.vdmpp" index="1">
+<position info="not_deleted" x="269" y="0"/>
+</item>
+<item historyLabel="Poligono.vdmpp" index="0">
+<position info="not_deleted" x="834" y="0"/>
+</item>
+<item historyLabel="Tree.vdmpp" index="1">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="Tree2.vdmpp" index="2">
+<position info="not_deleted" x="783" y="0"/>
+</item>
+<item historyLabel="Tree.vdmpp" index="1">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="Tree2.vdmpp" index="2">
+<position info="not_deleted" x="996" y="0"/>
+</item>
+<item historyLabel="Poligono.vdmpp" index="0">
+<position info="not_deleted" x="834" y="0"/>
+</item>
+<item historyLabel="Tree2.vdmpp" index="2">
+<position info="not_deleted" x="827" y="0"/>
+</item>
+<item historyLabel="Poligono.vdmpp" index="0">
+<position info="not_deleted" x="834" y="0"/>
+</item>
+<item historyLabel="Tree.vdmpp" index="3">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="Tree2.vdmpp" index="4">
+<position/>
+</item>
+<item historyLabel="Board.vdmpp" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GameEngine.vdmpp" index="6">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="House.vdmpp" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Player.vdmpp" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Ship.vdmpp" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="VDMUnit.vdmpp" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="GameEngine.vdmpp" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="House.vdmpp" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Player.vdmpp" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Ship.vdmpp" index="15">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IO.vdmpp" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="IO.vdmpp" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="486" y="0"/>
+</item>
+<item historyLabel="GameEngine.vdmpp" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="House.vdmpp" index="13">
+<position info="not_deleted" x="19" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="296" y="0"/>
+</item>
+<item historyLabel="Poligono.vdmpp" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="272" y="0"/>
+</item>
+<item historyLabel="Poligono.vdmpp" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="272" y="0"/>
+</item>
+<item historyLabel="Tree.vdmpp" index="18">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="272" y="0"/>
+</item>
+<item historyLabel="Tree2.vdmpp" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="157" y="0"/>
+</item>
+<item historyLabel="IO.vdmpp" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="157" y="0"/>
+</item>
+<item historyLabel="MATH.vdmpp" index="19">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="VDMUnit.vdmpp" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Board.vdmpp" index="11">
+<position info="not_deleted" x="374" y="0"/>
+</item>
+<item historyLabel="GameEngine.vdmpp" index="12">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="House.vdmpp" index="13">
+<position info="not_deleted" x="19" y="0"/>
+</item>
+<item active="true" historyLabel="Player.vdmpp" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="VDMUnit.vdmpp" tooltip="Battleship/lib/VDMUnit.vdmpp">
+<persistable path="/Battleship/lib/VDMUnit.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="MATH.vdmpp" tooltip="Battleship/lib/MATH.vdmpp">
+<persistable path="/Battleship/lib/MATH.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Tree2.vdmpp" tooltip="Tree2/Tree2.vdmpp">
+<persistable path="/Tree2/Tree2.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Tree.vdmpp" tooltip="Tree/Tree.vdmpp">
+<persistable path="/Tree/Tree.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Poligono.vdmpp" tooltip="Poligono/Poligono.vdmpp">
+<persistable path="/Poligono/Poligono.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="IO.vdmpp" tooltip="Battleship/lib/IO.vdmpp">
+<persistable path="/Battleship/lib/IO.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Ship.vdmpp" tooltip="Battleship/battleship/Ship.vdmpp">
+<persistable path="/Battleship/battleship/Ship.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Player.vdmpp" tooltip="Battleship/battleship/Player.vdmpp">
+<persistable path="/Battleship/battleship/Player.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="House.vdmpp" tooltip="Battleship/battleship/House.vdmpp">
+<persistable path="/Battleship/battleship/House.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="GameEngine.vdmpp" tooltip="Battleship/battleship/GameEngine.vdmpp">
+<persistable path="/Battleship/battleship/GameEngine.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Board.vdmpp" tooltip="Battleship/battleship/Board.vdmpp">
+<persistable path="/Battleship/battleship/Board.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Ship.vdmpp" tooltip="Battheship/battleship/Ship.vdmpp">
+<persistable path="/Battheship/battleship/Ship.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="Player.vdmpp" tooltip="Battheship/battleship/Player.vdmpp">
+<persistable path="/Battheship/battleship/Player.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="House.vdmpp" tooltip="Battheship/battleship/House.vdmpp">
+<persistable path="/Battheship/battleship/House.vdmpp"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.overture.ide.vdmpp.ui.VdmPpEditor" name="GameEngine.vdmpp" tooltip="Battheship/battleship/GameEngine.vdmpp">
+<persistable path="/Battheship/battleship/GameEngine.vdmpp"/>
+</file>
+</mruList>
+</workbench>
