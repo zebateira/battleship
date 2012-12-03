@@ -4,6 +4,13 @@ class House
 -- TODO Define values here
 	instance variables
 	 public coord: inmap char to int := {|->};
+	 public board: Board;
+	 public hit : bool := false;
+	 public hasShip : bool := false;
+	 public ship: Ship;
+	 
+	 --inv dom coord >= "A" and dom coord <= ("A" + board.size);
+	 
 	operations
 -- TODO Define operations here
 	functions
