@@ -2,10 +2,30 @@ class GameEngine
 	types
 -- TODO Define types here
 	values
+	
 -- TODO Define values here
 	instance variables
+		public p1: Player;
+		public p2: Player;
 -- TODO Define instance variables here
 	operations
+		
+		public GameEngine : () ==> GameEngine
+			GameEngine () ==
+			(
+				p1 := new Player("player1");
+				p2 := new Player("player2");
+
+				startGame();
+			);
+	
+		public startGame : () ==> ()
+			startGame () ==
+			(
+				p1.play();
+				p2.play();
+			);
+			
 -- TODO Define operations here
 	functions
 -- TODO Define functiones here

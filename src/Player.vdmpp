@@ -1,12 +1,26 @@
 class Player
 	types
+		public String = VDMUtils`String;
 -- TODO Define types here
 	values
 -- TODO Define values here
 	instance variables
+		public name : String;
 -- TODO Define instance variables here
 	operations
--- TODO Define operations here
+	
+		public Player : String ==> Player
+		Player(n) ==
+		(
+			name := n;
+		);
+		
+		public play : () ==> int
+			play () ==
+			(
+				return 0;
+			);
+	
 	functions
 -- TODO Define functiones here
 	traces

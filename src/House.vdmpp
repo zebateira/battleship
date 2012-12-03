@@ -1,13 +1,31 @@
 class House
 	types
+	
 	values
--- TODO Define values here
+	
 	instance variables
-	 public coord: inmap char to int := {|->};
+	 public x: int;
+	 public y: int;
+	 public hit: bool := false;
+	 public hasShip: bool := false;
+	 public ship: Ship;
+	 public board: Board;
+
+	-- Coordinate restriction 
+	 inv x >= 0 and x <= board.size;
+	 inv y >= 0 and y <= board.size;
+	 
 	operations
--- TODO Define operations here
-	functions
--- TODO Define functiones here
+		-- Constructor
+		public House : Board * int * int ==> House
+			House (b, x1, y1) ==
+			(
+				board := b;
+				x := x1;
+				y := y1;
+			)
+		pre is_Board(b);
+		
 	traces
 -- TODO Define Combinatorial Test Traces here
 end House
