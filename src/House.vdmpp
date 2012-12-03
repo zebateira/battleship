@@ -1,8 +1,7 @@
 class House
 	types
-	
 	values
-	
+-- TODO Define values here
 	instance variables
 	 public x: int;
 	 public y: int;

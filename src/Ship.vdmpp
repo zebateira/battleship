@@ -4,8 +4,16 @@ class Ship
 	values
 -- TODO Define values here
 	instance variables
+	public hits : int := 0;
+	public size: int := 1;
 -- TODO Define instance variables here
 	operations
+	
+	public inc: () ==> ()
+	inc() == hits := hits +1;
+	
+	public isDown : () ==> bool
+	isDown() == return size = hits;
 -- TODO Define operations here
 	functions
 -- TODO Define functiones here

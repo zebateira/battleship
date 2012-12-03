@@ -1,34 +1,56 @@
 class Board
 	types
-		Houses = set of House;
+		public Houses = set of House;
 	values
-	
+-- TODO Define values here
 	instance variables
 		public size: int := 10;
 		public type: int := 0;
-		public 	houses: Houses;
-		
+		public houses: Houses := {};
+		--public ships: seq of Ship := nil;
 		inv card(houses) >= 1;
-		inv size >= 1 and type >= 0 and type <= 3;
+		inv size >= 1 and type >= 0 and type <=3;
 		
 	operations
 	
-		
-		public Board: int ==> Board
-			Board(t) == (size := 10; type := t;)
+		public Board : Houses ==> Board
+			Board(h) == 
+			(	
+				houses := h;
+			)
 		post card(houses) = size*size;
 		
-		public Board : int * int ==> Board
-			Board (s, t) == 
+		public Board: int * Houses==> Board
+			Board(t,h) == 
+			(
+				type := t;
+				houses := h;
+			)
+		post card(houses) = size*size;
+		
+		public Board : int * int * Houses ==> Board
+			Board (s, t, h) == 
 			(
 				size := s;
 				type := t;
-			);
-			--			generate_houses(size););
-
-	-- TODO generate houses for board.	
-		--private generate_houses : int ==> void
-		--generate_houses (s) ==
-			--card(houses)
-								
+				houses := h;
+			)
+		post card(houses) = size*size;
+		
+		-- returns:
+		--0 => miss or already hit
+		--1 => hit
+		--2 => ship sunk
+		public hit : House ==> int
+			hit(h) ==
+			(
+				if not h.hasShip or h.hit then return 0
+				elseif h.hasShip then 
+					(
+						h.ship.inc();
+						if not h.ship.isDown() then return 1
+						else return 2;
+					)
+				else return 0;
+			);								
 end Board
