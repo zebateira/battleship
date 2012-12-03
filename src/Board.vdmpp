@@ -12,15 +12,26 @@ class Board
 		inv size >= 1 and type >= 0 and type <=3;
 		
 	operations
+	
+		public Board : () ==> Board
+		Board() == (size := 10; type := 0;)
+		post card(houses) = size*size;
+		
+		public Board: int ==> Board
+		Board(t) == (size := 10; type := t;)
+		post card(houses) = size*size;
+		
 		public Board : int * int ==> Board
 		Board (s, t) == 
 						(size := s;
-						type := t;
-						generate_houses(size););
+						type := t;);
+			--			generate_houses(size););
 						
 	-- TODO generate houses for board.	
 		--private generate_houses : int ==> void
-		--generate_houses (s) == 				
+		--generate_houses (s) ==
+			--card(houses)
+								
 	functions
 
 -- TODO Define functiones here
