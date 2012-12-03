@@ -16,14 +16,13 @@ class House
 	 
 	operations
 		-- Constructor
-		public House : Board * int * int ==> House
-			House (b, x1, y1) ==
+		public House : int * int ==> House
+			House (x1, y1) ==
 			(
-				board := b;
 				x := x1;
 				y := y1;
-			)
-		pre is_Board(b);
+			);
+		--pre is_Board(b);
 		
 	traces
 -- TODO Define Combinatorial Test Traces here

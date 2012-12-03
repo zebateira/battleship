@@ -6,19 +6,22 @@ class Player
 -- TODO Define values here
 	instance variables
 		public name : String;
+		public ships : seq of Ship;
 -- TODO Define instance variables here
 	operations
 	
-		public Player : String ==> Player
-		Player(n) ==
+		public Player : String * int ==> Player
+		Player(n, bsize) ==
 		(
 			name := n;
+			
+			-- create ships.
 		);
 		
-		public play : () ==> int
-			play () ==
+		public play : int ==> seq of int
+			play (bsize) ==
 			(
-				return 0;
+				return [MATH`rand(bsize)] ^ [MATH`rand(bsize)];
 			);
 	
 	functions

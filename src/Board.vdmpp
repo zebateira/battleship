@@ -5,11 +5,11 @@ class Board
 -- TODO Define values here
 	instance variables
 		public size: int := 10;
-		public type: int := 0;
+		public playable: bool;
 		public houses: Houses := {};
 		--public ships: seq of Ship := nil;
 		inv card(houses) >= 1;
-		inv size >= 1 and type >= 0 and type <=3;
+		inv size >= 1;
 		
 	operations
 	
@@ -20,19 +20,19 @@ class Board
 			)
 		post card(houses) = size*size;
 		
-		public Board: int * Houses==> Board
-			Board(t,h) == 
+		public Board: Houses * bool ==> Board
+			Board(h, t) == 
 			(
-				type := t;
+				playable := t;
 				houses := h;
 			)
 		post card(houses) = size*size;
 		
-		public Board : int * int * Houses ==> Board
+		public Board : int * bool * Houses ==> Board
 			Board (s, t, h) == 
 			(
 				size := s;
-				type := t;
+				playable := t;
 				houses := h;
 			)
 		post card(houses) = size*size;
@@ -43,6 +43,20 @@ class Board
 		--2 => ship sunk
 		public hit : House ==> int
 			hit(h) ==
+			(
+				if not h.hasShip or h.hit then return 0
+				elseif h.hasShip then 
+					(
+						h.ship.inc();
+						if not h.ship.isDown() then return 1
+						else return 2;
+					)
+				else return 0;
+			);				
+			
+			-- TODO
+		public mark : House ==> int
+			mark(h) ==
 			(
 				if not h.hasShip or h.hit then return 0
 				elseif h.hasShip then 

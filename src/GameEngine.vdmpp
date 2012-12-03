@@ -5,26 +5,62 @@ class GameEngine
 	
 -- TODO Define values here
 	instance variables
+		houses : set of House := genHouses(9, 9);
 		public p1: Player;
 		public p2: Player;
+		public board1own : Board := new Board(houses, false);
+		public board1play : Board := new Board(houses, true);
+		public board2own : Board := new Board(houses, false);
+		public board2play : Board := new Board(houses, true);
 -- TODO Define instance variables here
 	operations
 		
-		public GameEngine : () ==> GameEngine
-			GameEngine () ==
+		public GameEngine : int ==> GameEngine
+			GameEngine (boardSize) ==
 			(
-				p1 := new Player("player1");
-				p2 := new Player("player2");
-
+				p1 := new Player("player1", boardSize);
+				p2 := new Player("player2", boardSize);
+				
+				-- create boards
+				
 				startGame();
 			);
 	
 		public startGame : () ==> ()
 			startGame () ==
 			(
-				p1.play();
-				p2.play();
+				-- loop
+				let h = p1.play(board1own.size) in
+				(
+					board2own.hit(mk_House(h(1), h(2)));
+					board1play.mark(mk_House(h(1), h(2)));
+				);
+				let h2 = p2.play(board1own.size) in
+				(
+					board1own.hit(mk_House(h2(1), h2(2)));
+					board2play.mark(mk_House(h2(1), h2(2)));
+				)
 			);
+			
+		public genHouses : int * int ==> set of House
+			genHouses(x, y) ==
+			(
+				if x = 0 and y = 0 then
+					return { new House(x, y) }
+				elseif x = 0 then
+					return { new House(x, y) } union genHouses(x, y-1)
+				elseif y = 0 then
+					return { new House(x, y) } union genHouses(x-1, y)
+				else
+					return { new House(x, y) } union genHouses(x, y-1) union genHouses(x-1, y)
+			);
+		
+--			genHouses (0, 0) == ( return { new House(0, 0) } );
+	--		genHouses (x, 0) == ( return { new House(x, 0) } union genHouses(x-1, 0) );
+		--	genHouses (x, y) == 
+			--(
+				--return { new House(x, y) } union genHouses(x, y-1) union genHouses(x-1, y)
+			--);
 			
 -- TODO Define operations here
 	functions
