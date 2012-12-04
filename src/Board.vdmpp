@@ -26,6 +26,8 @@ class Board
 			(
 				playable := t;
 				houses := h;
+				
+				for all h1 in set houses do h1.setBoard(self);
 			)
 		post card(houses) = size*size;
 		
@@ -35,6 +37,8 @@ class Board
 				size := s;
 				playable := t;
 				houses := h;
+				
+				for all h1 in set houses do h1.setBoard(self);
 			)
 		post card(houses) = size*size;
 		

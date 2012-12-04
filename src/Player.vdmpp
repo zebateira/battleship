@@ -6,13 +6,20 @@ class Player
 	instance variables
 		public name : String;
 		public ships : seq of Ship;
+		protected boardown : Board;
+		protected boardplay : Board;
+		
 	operations
 	
-		public Player : String * int ==> Player
+		public Player : String * int==> Player
 		Player(n, bsize) ==
 		(
 			name := n;
 			
+			for all h in set GameEngine.board1own.houses  do
+			(
+				h.hasShip(
+			);
 			-- TODO create ships.
 		);
 		
