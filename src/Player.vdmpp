@@ -1,26 +1,30 @@
 class Player
 	types
 		public String = VDMUtils`String;
+		
 -- TODO Define types here
 	values
+		public sizes : map nat1 to nat1 = {2 |-> 4, 3|->3, 4|->2,5|->1};
+
 	instance variables
 		public name : String;
 		public ships : seq of Ship;
 		protected boardown : Board;
 		protected boardplay : Board;
 		
+		inv len ships >= 1 and len ships <= 7;
+		
 	operations
 	
-		public Player : String * int * Board==> Player
-		Player(n, bsize, board) ==
+		public Player : String * Board * Board==> Player
+		Player(n, b1,b2) ==
 		(
 			name := n;
+			boardown := b1;
+			boardplay := b2
 			
-			--for all h in set GameEngine.board1own.houses  do
-		--	(
-		--		h.hasShip(
-			--);
-			-- TODO create ships.
+			
+			
 		);
 		
 		public play : int ==> seq of int

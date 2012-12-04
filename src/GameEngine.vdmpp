@@ -18,14 +18,14 @@ class GameEngine
 		public GameEngine : int ==> GameEngine
 			GameEngine (boardSize) ==
 			(
-				houses := genHouses(9, 9);
+				houses := genHouses(boardSize, boardSize);
 				board1own := new Board(houses, false);
 				board1play := new Board(houses, true);
 				board2own := new Board(houses, false);
 				board2play := new Board(houses, true);
-				p1 := new Player("player1", boardSize, board1own);
-				p2 := new Player("player2", boardSize, board2own);
-				--startGame();
+				p1 := new Player("player1", board1own,board1play);
+				p2 := new Player("player2", board2own,board2play);
+				startGame();
 			);
 
 		public startGame : () ==> ()

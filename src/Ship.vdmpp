@@ -52,23 +52,24 @@ class Ship
 				(
 					let h in set b.houses be st h.x = c(1) and h.y = c(2) in
 					(
-						 if(h.hasShip) then return false
-						 else h.hasShip := true;
+						 h.hasShip := true;
 					)
 				)
 				elseif player = 2 then
 				(
 					let h in set b.houses be st h.x = c(1) and h.y = c(2) in
 					(
-						 if(h.hasShip) then return false
-						 else h.hasShip := true;
+						 h.hasShip := true;
 					)
 				)
 			);
 			return true;
+		)
+	pre forall c in set coords &
+		let h in set b.houses be st h.x = c(1) and h.y = c(2) in
+		(
+			not h.hasShip
 		);
-	--pre forall c in set coords &
-		--	forall h in set GameEngine
 			 
 	public inc: () ==> ()
 	inc() == hits := hits +1;
