@@ -3,11 +3,9 @@ class Player
 		public String = VDMUtils`String;
 -- TODO Define types here
 	values
--- TODO Define values here
 	instance variables
 		public name : String;
 		public ships : seq of Ship;
--- TODO Define instance variables here
 	operations
 	
 		public Player : String * int ==> Player
@@ -15,17 +13,15 @@ class Player
 		(
 			name := n;
 			
-			-- create ships.
+			-- TODO create ships.
 		);
 		
 		public play : int ==> seq of int
 			play (bsize) ==
 			(
-				return [MATH`rand(bsize)] ^ [MATH`rand(bsize)];
+				return [MATH`rand(bsize-1)] ^ [MATH`rand(bsize-1)];
 			);
 	
 	functions
--- TODO Define functiones here
 	traces
--- TODO Define Combinatorial Test Traces here
 end Player

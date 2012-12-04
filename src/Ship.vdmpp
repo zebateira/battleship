@@ -1,12 +1,9 @@
 class Ship
 	types
--- TODO Define types here
 	values
--- TODO Define values here
 	instance variables
 	public hits : int := 0;
 	public size: int := 1;
--- TODO Define instance variables here
 	operations
 	
 	public inc: () ==> ()

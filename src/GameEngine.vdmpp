@@ -1,19 +1,19 @@
 class GameEngine
 	types
--- TODO Define types here
 	values
-	
--- TODO Define values here
 	instance variables
-		houses : set of House := genHouses(9, 9);
+		houses : set of House;
 		public p1: Player;
 		public p2: Player;
-		public board1own : Board := new Board(houses, false);
-		public board1play : Board := new Board(houses, true);
-		public board2own : Board := new Board(houses, false);
-		public board2play : Board := new Board(houses, true);
--- TODO Define instance variables here
+		public board1own : Board;
+		public board1play : Board;
+		public board2own : Board;
+		public board2play : Board;
 	operations
+	
+		public there : () ==> ()
+			there() ==
+				IO`println(3);
 		
 		public GameEngine : int ==> GameEngine
 			GameEngine (boardSize) ==
@@ -21,24 +21,25 @@ class GameEngine
 				p1 := new Player("player1", boardSize);
 				p2 := new Player("player2", boardSize);
 				
-				-- create boards
-				
-				startGame();
+				houses := genHouses(9, 9);
+				board1own := new Board(houses, false);
+				board1play := new Board(houses, true);
+				board2own := new Board(houses, false);
+				board2play := new Board(houses, true);
+				--startGame();
 			);
-	
+
 		public startGame : () ==> ()
 			startGame () ==
 			(
-				-- loop
-				let h = p1.play(board1own.size) in
+				-- TODO loop
+				let coords = p1.play(board1own.size) in
 				(
-					board2own.hit(mk_House(h(1), h(2)));
-					board1play.mark(mk_House(h(1), h(2)));
+					board1play.mark(coords, board2own.hit(coords));
 				);
-				let h2 = p2.play(board1own.size) in
+				let coords2 = p2.play(board1own.size) in
 				(
-					board1own.hit(mk_House(h2(1), h2(2)));
-					board2play.mark(mk_House(h2(1), h2(2)));
+					board2play.mark(coords2, board1own.hit(coords2));
 				)
 			);
 			
@@ -54,17 +55,7 @@ class GameEngine
 				else
 					return { new House(x, y) } union genHouses(x, y-1) union genHouses(x-1, y)
 			);
-		
---			genHouses (0, 0) == ( return { new House(0, 0) } );
-	--		genHouses (x, 0) == ( return { new House(x, 0) } union genHouses(x-1, 0) );
-		--	genHouses (x, y) == 
-			--(
-				--return { new House(x, y) } union genHouses(x, y-1) union genHouses(x-1, y)
-			--);
-			
--- TODO Define operations here
+
 	functions
--- TODO Define functiones here
 	traces
--- TODO Define Combinatorial Test Traces here
 end GameEngine

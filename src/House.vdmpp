@@ -1,7 +1,6 @@
 class House
 	types
 	values
--- TODO Define values here
 	instance variables
 	 public x: int;
 	 public y: int;
@@ -11,8 +10,8 @@ class House
 	 public board: Board;
 
 	-- Coordinate restriction 
-	 inv x >= 0 and x <= board.size;
-	 inv y >= 0 and y <= board.size;
+	-- inv x >= 0 and x <= board.size;
+	-- inv y >= 0 and y <= board.size;
 	 
 	operations
 		-- Constructor
@@ -24,6 +23,11 @@ class House
 			);
 		--pre is_Board(b);
 		
+		public setBoard : Board ==> ()
+			setBoard(b) ==
+			(
+				board := b;
+			);
+		
 	traces
--- TODO Define Combinatorial Test Traces here
 end House
