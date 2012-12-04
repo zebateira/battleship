@@ -23,8 +23,8 @@ class GameEngine
 				board1play := new Board(houses, true);
 				board2own := new Board(houses, false);
 				board2play := new Board(houses, true);
-				p1 := new Player("player1", boardSize, mk_board(board1own));
-				p2 := new Player("player2", boardSize, mk_board(board2own));
+				p1 := new Player("player1", boardSize, board1own);
+				p2 := new Player("player2", boardSize, board2own);
 				--startGame();
 			);
 

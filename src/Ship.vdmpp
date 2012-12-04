@@ -1,6 +1,7 @@
 class Ship
 	types
-		coord = seq of int;
+		public coord = seq of int;
+		
 	values
 		orientations : map int to (seq of int) = {0|->[0,-1],1|->[1,0],2|->[0,1],3|->[-1,0]};
 		
@@ -17,44 +18,39 @@ class Ship
 	-- 2 -> down
 	-- 3 -> left
 	inv orientation >= 0 and orientation <= 3;
-	
-	inv len coord = 2;
+	inv len coord_init = 2;
+	--inv len coord = 2;
 	
 	inv card(coords) >= 0 and card(coords) <= size;
 	
 	operations
 	
-	public Ship: coord * int * int * int ==> bool
-	Ship(c,o,s,p) == 
+	public Ship: coord * int * int * Board ==> Ship --* Board ==> Ship
+	Ship(c,o,s,b) == 
 	(
 		coord_init := c;
 		size := s;
 		coords := {c};
 		orientation := o;
-		player := p;
 		
 		for i = 1 to size do
 		(	
-			new_coord:=[c(1)+orientations(o)(1)*i,c(2)+orientations(o)(2)*i];
-			coords := coords union {new_coord};
-			
+			coords := coords union {[c(1)+orientations(o)(1)*i,c(2)+orientations(o)(2)*i]};
 		);
-		
-		if not fill_houses() then return false
-		else return true;
 	)
 	pre	forall x in set {c(1),c(1)+orientations(o)(1)*s,c(2),c(2)+orientations(o)(2)*s} &
-			x>=0 and x<=GameEngine.board1own.size;
+			x>=0 and x<=b.size
+	post fill_houses(b);
 	
-	
-	private fill_houses: () ==> bool
-		fill_houses() ==
+		
+	public fill_houses: Board ==> bool
+		fill_houses(b) ==
 		(
 			for all c in set coords do
 			(
 				if player = 1 then
 				(
-					let h in set GameEngine.board1own.houses be st h.x = c(1) and h.y = c(2) in
+					let h in set b.houses be st h.x = c(1) and h.y = c(2) in
 					(
 						 if(h.hasShip) then return false
 						 else h.hasShip := true;
@@ -62,7 +58,7 @@ class Ship
 				)
 				elseif player = 2 then
 				(
-					let h in set GameEngine.board2own.houses be st h.x = c(1) and h.y = c(2) in
+					let h in set b.houses be st h.x = c(1) and h.y = c(2) in
 					(
 						 if(h.hasShip) then return false
 						 else h.hasShip := true;
@@ -70,9 +66,9 @@ class Ship
 				)
 			);
 			return true;
-		)
-	pre forall c in set coords &
-			forall h in set GameEngine
+		);
+	--pre forall c in set coords &
+		--	forall h in set GameEngine
 			 
 	public inc: () ==> ()
 	inc() == hits := hits +1;

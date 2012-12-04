@@ -11,15 +11,15 @@ class Player
 		
 	operations
 	
-		public Player : String * int==> Player
-		Player(n, bsize) ==
+		public Player : String * int * Board==> Player
+		Player(n, bsize, board) ==
 		(
 			name := n;
 			
-			for all h in set GameEngine.board1own.houses  do
-			(
-				h.hasShip(
-			);
+			--for all h in set GameEngine.board1own.houses  do
+		--	(
+		--		h.hasShip(
+			--);
 			-- TODO create ships.
 		);
 		
