@@ -27,7 +27,8 @@ class House
 			setBoard(b) ==
 			(
 				board := b;
-			);
+			)
+		pre is_Board(b);
 		
 	traces
 end House

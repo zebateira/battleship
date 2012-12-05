@@ -21,12 +21,34 @@ class Player
 		(
 			name := n;
 			boardown := b1;
-			boardplay := b2
+			boardplay := b2;
 			
-			
+			for all s in set dom sizes do
+			(
+				for i = 0 to sizes(s) do
+				(
+					dcl c : Ship`coord, orientation:int;
+					c := get_coord();
+					orientation:=get_orientation();
+					
+					ships := ships ^ [new Ship(c,orientation,s,boardown)];
+				);
+			);
 			
 		);
 		
+		public get_coord: () ==> Ship`coord
+			get_coord() ==
+			(
+				return IO`freadval[Ship`coord]("path").#2;
+			);
+		
+		public get_orientation: () ==> int
+			get_orientation() ==
+			(
+				return IO`freadval[int]("path").#2;
+			);
+			
 		public play : int ==> seq of int
 			play (bsize) ==
 			(
