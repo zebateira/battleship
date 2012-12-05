@@ -2,13 +2,18 @@ class GameEngine
 	types
 	values
 	instance variables
-		houses : set of House;
+		--houses : set of House;
 		public p1: Player;
 		public p2: Player;
 		public board1own : Board;
 		public board1play : Board;
 		public board2own : Board;
 		public board2play : Board;
+		public activePlayer: int := 1;
+		public win : bool := false;
+		
+		inv activePlayer = 1 or activePlayer = 2;
+		
 	operations
 	
 		public there : () ==> ()
@@ -18,11 +23,10 @@ class GameEngine
 		public GameEngine : int ==> GameEngine
 			GameEngine (boardSize) ==
 			(
-				houses := genHouses(boardSize, boardSize);
-				board1own := new Board(houses, false);
-				board1play := new Board(houses, true);
-				board2own := new Board(houses, false);
-				board2play := new Board(houses, true);
+				board1own := new Board(genHouses(boardSize), false);
+				board1play := new Board(genHouses(boardSize), true);
+				board2own := new Board(genHouses(boardSize), false);
+				board2play := new Board(genHouses(boardSize), true);
 				p1 := new Player("player1", board1own,board1play);
 				p2 := new Player("player2", board2own,board2play);
 				startGame();
@@ -31,28 +35,54 @@ class GameEngine
 		public startGame : () ==> ()
 			startGame () ==
 			(
-				-- TODO loop
-				let coords = p1.play(board1own.size) in
+				while not win do
 				(
-					board1play.mark(coords, board2own.hit(coords));
+					if activePlayer = 1 then
+						let coords = p1.play(board1own.size) in
+						(
+							board1play.mark(coords, board2own.hit(coords));
+							activePlayer := 2;
+							
+							win := checkVictory(p2.ships);
+						)
+					else
+						let coords2 = p2.play(board1own.size) in
+						(
+							board2play.mark(coords2, board1own.hit(coords2));
+							activePlayer := 1;
+							
+							win := checkVictory(p1.ships);
+						);
 				);
-				let coords2 = p2.play(board1own.size) in
-				(
-					board2play.mark(coords2, board1own.hit(coords2));
-				)
 			);
-			
-		public genHouses : int * int ==> set of House
-			genHouses(x, y) ==
+		
+		public checkVictory: seq of Ship ==> bool
+			checkVictory (ships) ==
 			(
-				if x = 0 and y = 0 then
-					return { new House(x, y) }
-				elseif x = 0 then
-					return { new House(x, y) } union genHouses(x, y-1)
-				elseif y = 0 then
-					return { new House(x, y) } union genHouses(x-1, y)
-				else
-					return { new House(x, y) } union genHouses(x, y-1) union genHouses(x-1, y)
+				return true;	
+			)
+		pre forall s in set elems ships & s.isDown();	
+			
+		public genHouses : int ==> set of House
+			genHouses(s) ==
+			(
+				dcl xx : set of int, yy :set of int, houses : set of House := {};
+				xx := {1,...,s};
+				yy := {1,...,s};
+				
+				
+				for all x in set xx do
+				(
+					for all y in set yy do
+					(
+						houses := houses union {new House(x,y)};
+						IO`println([x] ^ [y]);
+					)
+				);
+				
+				IO`println(houses);
+				
+				return houses;
 			);
 
 	functions

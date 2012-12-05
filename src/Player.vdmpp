@@ -4,6 +4,7 @@ class Player
 		
 -- TODO Define types here
 	values
+	-- size |-> number of ships of that size
 		public sizes : map nat1 to nat1 = {2 |-> 4, 3|->3, 4|->2,5|->1};
 
 	instance variables
@@ -19,40 +20,34 @@ class Player
 		public Player : String * Board * Board==> Player
 		Player(n, b1,b2) ==
 		(
+			dcl c : seq of Ship`coord, orientation:seq of int;
 			name := n;
 			boardown := b1;
 			boardplay := b2;
+			c := get_coord();
+			orientation:=get_orientation();
 			
 			for all s in set dom sizes do
-			(
-				for i = 0 to sizes(s) do
-				(
-					dcl c : Ship`coord, orientation:int;
-					c := get_coord();
-					orientation:=get_orientation();
-					
-					ships := ships ^ [new Ship(c,orientation,s,boardown)];
-				);
-			);
-			
+				for i = 1 to sizes(s) do
+					ships := ships ^ [new Ship(c(i),orientation(i),s,boardown)];		
 		);
 		
-		public get_coord: () ==> Ship`coord
+		public get_coord: () ==> seq of Ship`coord
 			get_coord() ==
 			(
-				return IO`freadval[Ship`coord]("path").#2;
+				return IO`freadval[seq of Ship`coord]("path").#2;
 			);
 		
-		public get_orientation: () ==> int
+		public get_orientation: () ==> seq of int
 			get_orientation() ==
 			(
-				return IO`freadval[int]("path").#2;
+				return IO`freadval[seq of int]("path").#2;
 			);
 			
-		public play : int ==> seq of int
+		public play : int ==> Ship`coord
 			play (bsize) ==
 			(
-				return [MATH`rand(bsize-1)] ^ [MATH`rand(bsize-1)];
+				return [MATH`rand(bsize-1)] ^ [MATH`rand(bsize-1)]; 
 			);
 	
 	functions

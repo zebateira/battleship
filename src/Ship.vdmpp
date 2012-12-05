@@ -4,16 +4,17 @@ class Ship
 		
 	values
 		orientations : map int to (seq of int) = {0|->[0,-1],1|->[1,0],2|->[0,1],3|->[-1,0]};
-		id : int = -1;
+		
 		
 	instance variables
+	public static id : int := 0;
 	public coord_init : coord;
 	public coords : set of coord := {};
 	public orientation : int := 1;
 	public hits : int := 0;
 	public size: int := 1;
 	public board: Board;
-	public my_id: int := id;
+	public my_id: int;
 	
 	-- 0 -> up
 	-- 1 -> right
@@ -41,6 +42,8 @@ class Ship
 		(	
 			coords := coords union {[c(1)+orientations(o)(1)*i,c(2)+orientations(o)(2)*i]};
 		);
+		
+		id := my_id;
 	)
 	pre	forall x in set {c(1),c(1)+orientations(o)(1)*s,c(2),c(2)+orientations(o)(2)*s} &
 			x>=0 and x<=board.size
