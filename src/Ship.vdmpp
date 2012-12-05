@@ -11,7 +11,7 @@ class Ship
 	public orientation : int := 1;
 	public hits : int := 0;
 	public size: int := 1;
-	public player : int;
+	public board: Board;
 	
 	-- 0 -> up
 	-- 1 -> right
@@ -32,6 +32,7 @@ class Ship
 		size := s;
 		coords := {c};
 		orientation := o;
+		board := b;
 		
 		for i = 1 to size do
 		(	
@@ -39,34 +40,24 @@ class Ship
 		);
 	)
 	pre	forall x in set {c(1),c(1)+orientations(o)(1)*s,c(2),c(2)+orientations(o)(2)*s} &
-			x>=0 and x<=b.size
-	post fill_houses(b);
+			x>=0 and x<=board.size
+	post fill_houses();
 	
 		
-	public fill_houses: Board ==> bool
-		fill_houses(b) ==
+	public fill_houses: ()==> bool
+		fill_houses() ==
 		(
 			for all c in set coords do
 			(
-				if player = 1 then
+				let h in set board.houses be st h.x = c(1) and h.y = c(2) in
 				(
-					let h in set b.houses be st h.x = c(1) and h.y = c(2) in
-					(
-						 h.hasShip := true;
-					)
-				)
-				elseif player = 2 then
-				(
-					let h in set b.houses be st h.x = c(1) and h.y = c(2) in
-					(
-						 h.hasShip := true;
-					)
+					h.hasShip := true;
 				)
 			);
 			return true;
 		)
 	pre forall c in set coords &
-		let h in set b.houses be st h.x = c(1) and h.y = c(2) in
+		let h in set board.houses be st h.x = c(1) and h.y = c(2) in
 		(
 			not h.hasShip
 		);
