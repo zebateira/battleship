@@ -49,7 +49,7 @@ class Board
 		public hit : seq of int ==> int
 			hit(coords) ==
 			(
-				let h in set houses be st h.x = coords(1) and h.y = coords(2) in (
+				let h in set houses be st (h.x = coords(1) and h.y = coords(2)) in (
 					if not h.hasShip or h.hit then return 0
 					elseif h.hasShip then
 						(

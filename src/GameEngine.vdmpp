@@ -15,11 +15,6 @@ class GameEngine
 		inv activePlayer = 1 or activePlayer = 2;
 		
 	operations
-	
-		public there : () ==> ()
-			there() ==
-				IO`println(3);
-		
 		public GameEngine : int ==> GameEngine
 			GameEngine (boardSize) ==
 			(
@@ -29,39 +24,44 @@ class GameEngine
 				board2play := new Board(genHouses(boardSize), true);
 				p1 := new Player("player1", board1own,board1play);
 				p2 := new Player("player2", board2own,board2play);
-				startGame();
+				IO`print("player ");
+				IO`print(startGame());
+				IO`print("won! =D");
+				
+				
 			);
 
-		public startGame : () ==> ()
+		public startGame : () ==> int
 			startGame () ==
 			(
 				while not win do
 				(
 					if activePlayer = 1 then
-						let coords = p1.play(board1own.size) in
+						let coords = p1.play() in
 						(
 							board1play.mark(coords, board2own.hit(coords));
-							activePlayer := 2;
-							
 							win := checkVictory(p2.ships);
+							if win then return activePlayer;
+							activePlayer := 2;
 						)
 					else
-						let coords2 = p2.play(board1own.size) in
+						let coords2 = p2.play() in
 						(
 							board2play.mark(coords2, board1own.hit(coords2));
-							activePlayer := 1;
-							
 							win := checkVictory(p1.ships);
+							if win then return activePlayer;
+							activePlayer := 1;
 						);
 				);
+				
+				return 0;
 			);
 		
 		public checkVictory: seq of Ship ==> bool
 			checkVictory (ships) ==
 			(
-				return true;	
-			)
-		pre forall s in set elems ships & s.isDown();	
+				return forall s in set elems ships & s.isDown();	
+			);
 			
 		public genHouses : int ==> set of House
 			genHouses(s) ==
@@ -76,11 +76,8 @@ class GameEngine
 					for all y in set yy do
 					(
 						houses := houses union {new House(x,y)};
-						IO`println([x] ^ [y]);
 					)
 				);
-				
-				IO`println(houses);
 				
 				return houses;
 			);
