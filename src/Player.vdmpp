@@ -7,15 +7,14 @@ class Player
 		--public sizes : map nat1 to nat1 = {2 |-> 4, 3|->3, 4|->2,5|->1};
 
 	instance variables
-		public static x2play : int := 1;
-		public static y2play : int := 1;
 		public static sizes : seq of int := [2, 2, 2, 2, 3, 3, 3, 4, 4, 5];
+		public it : int := 1;
 		public name : String;
 		public ships : seq of Ship;
 		protected boardown : Board;
 		protected boardplay : Board;
 		
-		inv (len ships) <= 10;
+		inv (len ships) <= len sizes;
 		
 	operations
 	
@@ -42,21 +41,29 @@ class Player
 			get_coord() ==
 			(
 				return IO`freadval[seq of Ship`coord]("src/res/" ^ name ^ ".coords").#2;				
-			);
+			); --TODO post : test coords
 		
 		public get_orientation: () ==> seq of int
 			get_orientation() ==
 			(
 				return IO`freadval[seq of int]("src/res/" ^ name ^ ".or").#2;
-			);
+			); --TODO post : test orientations
 
 		public play : () ==> Ship`coord
 			play () ==
 			(
-				x2play := x2play + 1;
-				y2play := y2play + 1;
-				return [x2play-1] ^ [y2play-1]; 
-			);
+				dcl x : int := it - (it div 10) * 10,
+					y : int := (it div 10) + 1;
+					
+				if x = 0 then x := it / 10;
+				if y > 10 then y := 10;
+				
+				it := it + 1;
+				
+				return [x] ^ [y];
+			)
+			pre it <= 100
+			post RESULT(1) >= 1 and RESULT(2) <= boardown.size and RESULT(2) >= 1 and RESULT(2) <= boardown.size;
 	
 	functions
 	traces

@@ -41,6 +41,9 @@ class GameEngine
 						(
 							board1play.mark(coords, board2own.hit(coords));
 							win := checkVictory(p2.ships);
+							
+							IO`println(win);
+							
 							if win then return activePlayer;
 							activePlayer := 2;
 						)
@@ -69,7 +72,6 @@ class GameEngine
 				dcl xx : set of int, yy :set of int, houses : set of House := {};
 				xx := {1,...,s};
 				yy := {1,...,s};
-				
 				
 				for all x in set xx do
 				(

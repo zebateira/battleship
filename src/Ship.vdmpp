@@ -32,7 +32,7 @@ class Ship
 	(
 		coord_init := c;
 		size := s;
-		coords := {};
+		coords := {c};
 		orientation := o;
 		board := b;
 		my_id := id +1;
@@ -67,12 +67,14 @@ class Ship
 		(
 			not h.hasShip
 		);
-			 
+
 	public inc: () ==> ()
-	inc() == hits := hits +1;
+		inc() == hits := hits +1
+	pre hits < size
+	post hits <= size;
 	
 	public isDown : () ==> bool
-	isDown() == return size = hits;
+		isDown() == return size = hits;
 -- TODO Define operations here
 	functions
 -- TODO Define functiones here

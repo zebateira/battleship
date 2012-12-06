@@ -41,7 +41,7 @@ class Board
 				for all h1 in set houses do h1.setBoard(self);
 			)
 		post card(houses) = size*size;
-		
+
 		-- returns:
 		--0 => miss or already hit
 		--1 => hit
@@ -54,13 +54,16 @@ class Board
 					elseif h.hasShip then
 						(
 							h.ship.inc();
+							h.hit := true;
 							if not h.ship.isDown() then return 1
 							else return 2;
 						)
 					else return 0;
 				);
-			);
-		
+			)
+			pre coords(1) >= 1 and coords(1) <= self.size and coords(2) >= 1 and coords(2) <= self.size							
+			post RESULT >= 0 and RESULT <= 2;
+
 		public mark : seq of int * int ==> ()
 			mark(coords, res) ==
 			(
@@ -69,5 +72,6 @@ class Board
 					if res = 1 or res = 2 then
 						h.hasShip := true;
 				);
-			);							
+			)
+			pre coords(1) >= 1 and coords(1) <= self.size and coords(2) >= 1 and coords(2) <= self.size;							
 end Board
