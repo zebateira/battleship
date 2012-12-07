@@ -14,7 +14,6 @@ class House
  public ship: Ship;
  public board: Board;
 
- -- Coordinates restriction 
  inv checkCoords([x] ^ [y]);
  
  operations
@@ -35,6 +34,8 @@ class House
   pre is_Board(b);
  
  functions
+ 
+  -- Coordinates restriction: x and y must be between 1 and board size. 
   public static checkCoords : coords -> bool
    checkCoords(coords) ==
     coords(X) >= 1 and coords(X) <= Board`BOARD_SIZE and
@@ -48,14 +49,14 @@ end House
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-House & 100.0\% & 800 \\
+House & 100.0\% & 1700 \\
 \hline
-checkCoords & 100.0\% & 3380 \\
+checkCoords & 100.0\% & 30840 \\
 \hline
-setBoard & 100.0\% & 800 \\
+setBoard & 100.0\% & 1700 \\
 \hline
 \hline
-House.vdmpp & 100.0\% & 4980 \\
+House.vdmpp & 100.0\% & 34240 \\
 \hline
 \end{longtable}
 

@@ -5,53 +5,68 @@ class Board
  values
   public static BOARD_SIZE: int = 10;
   
-  public static MISS : int = 0;
-  public static HIT : int = 1;
-  public static SHIP_SUNK : int = 2;
+  --Values returned by hit()
+  public static MISS : int = 0; -- hit water
+  public static HIT : int = 1; -- hit a ship
+  public static SHIP_SUNK : int = 2; -- hit and sink a ship
  
  instance variables
-  
+
+  -- Boards can be of two types:
+  --  playable => registers the Players shots on the enemy's board.
+  --  not playable (own board) => registers the enemy's shots at the player's board. 
   public playable: bool;
+  -- Set of Houses that represent the board.
   public houses: Houses := {};
   
   inv card(houses) >= 1;
   
  operations
- 
+
   public Board: bool ==> Board
-   Board(t) == 
+   Board(type) == 
    (
-    playable := t;
+    playable := type;
     
+    -- Generates Houses for the Board
     for all x in set {1, ..., BOARD_SIZE}  do (
      for all y in set {1, ..., BOARD_SIZE} do (
       houses := houses union {new House(x,y)};
      )
     );
     
+    -- Sets the board reference in each house to self
     for all h1 in set houses do h1.setBoard(self);
    )
   post card(houses) = BOARD_SIZE * BOARD_SIZE;
   
+  
   -- returns:
-  --0 => miss or already hit
-  --1 => hit
-  --2 => ship sunk
+  --  MISS
+  --  HIT
+  --  SHIP_SUNK
   public hit : seq of int ==> int
    hit(coords) ==
    (
+    -- for the house h in the set houses (the board's houses) such that x and y coordinates
+    --  of coords is equal to x and y coordinates of h 
     let h in set houses be st (h.x = coords(House`X) and h.y = coords(House`Y)) in (
+    
+     -- Didnt hit a ship or already hit this house
      if not h.hasShip or h.hit then return MISS;
 
+     -- registers the hit
      h.ship.inc();
      h.hit := true;
-     if not h.ship.isDown() then return HIT
-     else return SHIP_SUNK;
+     
+     if h.ship.isDown() then return SHIP_SUNK
+     else return HIT;
     );
    )
-   pre House`checkCoords(coords)   
+   pre House`checkCoords(coords)
    post RESULT in set {MISS, HIT, SHIP_SUNK};
 
+  -- Replicates the result res of the shot the player made
   public mark : seq of int * int ==> ()
    mark(coords, res) ==
    (
@@ -61,7 +76,7 @@ class Board
       h.hasShip := true;
     );
    )
-   pre House`checkCoords(coords);       
+   pre House`checkCoords(coords);     
 end Board
 \end{vdm_al}
 \bigskip
@@ -70,14 +85,14 @@ end Board
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-Board & 100.0\% & 8 \\
+Board & 100.0\% & 17 \\
 \hline
 hit & 100.0\% & 119 \\
 \hline
 mark & 100.0\% & 119 \\
 \hline
 \hline
-Board.vdmpp & 100.0\% & 246 \\
+Board.vdmpp & 100.0\% & 255 \\
 \hline
 \end{longtable}
 

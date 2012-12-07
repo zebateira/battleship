@@ -11,25 +11,74 @@ class Test
         runAllTests () == (
          testFullGame1();
          testFullGame2();
+         
+         testBoardHousesNumber();
+         testCheckCoords();
+         testNoOverlapedShips();
         );
         
-        -- Tests
+        -- #### Full Tests (100% coverage)
         public static testFullGame1 : () ==> ()
          testFullGame1() == (
     dcl ge : GameEngine := new GameEngine("ze", true, "pedro", false),
-     victorious : int := ge.let_the_slaughter_begin(true);
-    
-    assertTrue(ge.win);
+     victorious : int := ge.let_the_slaughter_begin(false);
+
+    assertTrue(ge.isGameOver);
     assertTrue(victorious = ge.PLAYER2);
    );
         
         public static testFullGame2 : () ==> ()
          testFullGame2() == (
     dcl ge : GameEngine := new GameEngine("ze", false, "pedro", true),
-     victorious : int := ge.let_the_slaughter_begin(true);
+     victorious : int := ge.let_the_slaughter_begin(false);
     
-    assertTrue(ge.win);
+    assertTrue(ge.isGameOver);
     assertTrue(victorious = ge.PLAYER1);
+   );
+  
+  
+  -- #### Unit Testing
+  
+  -- Number of Houses of a Board is exactly BOARD_SIZE * BOARD_SIZE
+  public static testBoardHousesNumber : () ==> ()
+   testBoardHousesNumber() == (
+    dcl board : Board := new Board(false);
+    
+    assertTrue(card(board.houses) = Board`BOARD_SIZE * Board`BOARD_SIZE); 
+   );
+  
+  -- Every coords instanciated in the game are between 1 and BOARD_SIZE
+  public static testCheckCoords : () ==> ()
+   testCheckCoords() == (
+    dcl ge : GameEngine := new GameEngine("ze", true, "pedro", true),
+     boards : set of Board := ge.getAllBoards();
+     
+    assertTrue(
+     forall board in set boards &
+      forall house in set board.houses &
+       House`checkCoords([house.x] ^ [house.y])
+     and
+     forall ship in set elems (ge.player1.ships ^ ge.player2.ships) &
+      forall coord in set ship.coords &
+       House`checkCoords([coord(House`X)] ^ [coord(House`Y)])
+    );
+   );
+
+  public static testNoOverlapedShips : () ==> ()
+   testNoOverlapedShips() == (
+    dcl ge : GameEngine := new GameEngine("ze", true, "pedro", true),
+     coords1 : seq of House`coords := [], coords2 : seq of House`coords := [];
+     
+     for all ship in set elems ge.player1.ships do
+      coords1 := coords1 ^ VDMUtil`set2seq[House`coords](ship.coords);
+      
+     for all ship in set elems ge.player2.ships do
+      coords2 := coords2 ^ VDMUtil`set2seq[House`coords](ship.coords);
+   
+    assertTrue(
+     len coords1 = card elems coords1 and
+     len coords2 = card elems coords2    
+    );
    );
         
 end Test
@@ -40,16 +89,22 @@ end Test
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-assertTrue & 100.0\% & 4 \\
+assertTrue & 100.0\% & 7 \\
 \hline
 runAllTests & 100.0\% & 1 \\
+\hline
+testBoardHousesNumber & 100.0\% & 1 \\
+\hline
+testCheckCoords & 100.0\% & 1 \\
 \hline
 testFullGame1 & 100.0\% & 1 \\
 \hline
 testFullGame2 & 100.0\% & 1 \\
 \hline
+testNoOverlapedShips & 100.0\% & 1 \\
 \hline
-Test.vdmpp & 100.0\% & 7 \\
+\hline
+Test.vdmpp & 100.0\% & 13 \\
 \hline
 \end{longtable}
 

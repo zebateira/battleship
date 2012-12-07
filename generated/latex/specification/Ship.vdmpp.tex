@@ -3,11 +3,14 @@ class Ship
  types
   
  values
+  -- Orientations of the ships
   public static ORIENTATION_UP : int = 0;
   public static ORIENTATION_RIGHT : int = 1;
   public static ORIENTATION_DOWN : int = 2;
   public static ORIENTATION_LEFT : int = 3;
   
+  -- Mapping of the orientations to the increments to apply to get all the
+  -- coordinates of a ship.
   static orientations : map int to (seq of int) = {
    ORIENTATION_UP  |-> [ 0,-1],
    ORIENTATION_RIGHT |-> [+1, 0],
@@ -18,12 +21,12 @@ class Ship
  instance variables
  
   public static id : int := 0;
-  public coord_init : House`coords;
+  public coord_init : House`coords; -- the first house of the ship
   public coords : set of House`coords := {};
   public orientation : int := 1;
-  public hits : int := 0;
-  public size: int := 1;
-  public board: Board;
+  public hits : int := 0; -- number of hits that the ship as received (in different houses) 
+  public size: int := 1; -- number of houses that the ship fills
+  public board: Board; -- board to which the ship belongs to
   public my_id: int;
   
   inv checkOrientation(orientation);
@@ -44,12 +47,17 @@ class Ship
   my_id := id +1;
   id := my_id;
   
+  -- fills the coordinates of the ship given the initial coordinate and the orientation
   for i = 1 to size-1 do ( 
-   coords := coords union {[c(1)+orientations(o)(1)*i,c(2)+orientations(o)(2)*i]};
+   coords := coords union {
+      [c(House`X)+orientations(o)(House`X)*i,
+        c(House`Y)+orientations(o)(House`Y)*i]
+       };
   );
-  
+
  )
- pre forall x in set {c(1),c(1)+orientations(o)(1)*(s-1)}, y in set {c(2),c(2)+orientations(o)(2)*(s-1)} &
+ pre forall x in set {c(House`X),c(House`X)+orientations(o)(House`X)*(s-1)},
+    y in set {c(House`Y),c(House`Y)+orientations(o)(House`Y)*(s-1)} &
    House`checkCoords([x] ^ [y])
  post fill_houses();
  
@@ -58,7 +66,8 @@ class Ship
   (
    for all c in set coords do
    (
-    let h in set board.houses be st h.x = c(1) and h.y = c(2) in
+    let h in set board.houses be st h.x = c(House`X) and 
+             h.y = c(House`Y) in
     (
      h.hasShip := true;
      h.ship := self;
@@ -67,7 +76,8 @@ class Ship
    return true;
   )
  pre forall c in set coords &
-  let h in set board.houses be st h.x = c(1) and h.y = c(2) in
+  let h in set board.houses be st h.x = c(House`X) and 
+           h.y = c(House`Y) in
   (
    not h.hasShip
   );
@@ -92,18 +102,18 @@ end Ship
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-Ship & 100.0\% & 40 \\
+Ship & 100.0\% & 80 \\
 \hline
-checkOrientation & 100.0\% & 120 \\
+checkOrientation & 100.0\% & 168 \\
 \hline
-fill\_houses & 100.0\% & 40 \\
+fill\_houses & 100.0\% & 80 \\
 \hline
 inc & 100.0\% & 72 \\
 \hline
 isDown & 100.0\% & 383 \\
 \hline
 \hline
-Ship.vdmpp & 100.0\% & 655 \\
+Ship.vdmpp & 100.0\% & 783 \\
 \hline
 \end{longtable}
 

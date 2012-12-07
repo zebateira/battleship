@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.12.7)  7 DEC 2012 18:50
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.12.7)  7 DEC 2012 23:35
 entering extended mode
  %&-line parsing enabled.
 **battleship.tex
@@ -307,63 +307,65 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <8> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <8> not available
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 8.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <8> not available
-(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 36.
-
-Underfull \vbox (badness 10000) detected at line 82
+Underfull \vbox (badness 10000) detected at line 97
  []
 
-) (./specification/CLI.vdmpp.tex [2] [3] [4]
-Underfull \vbox (badness 10000) detected at line 182
+) (./specification/CLI.vdmpp.tex [2]
+LaTeX Font Info:    Try loading font information for OMS+pcr on input line 28.
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/omspcr.fd
+File: omspcr.fd 
+)
+LaTeX Font Info:    Font shape `OMS/pcr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+ [3] [4]
+Underfull \vbox (badness 10000) detected at line 186
  []
 
 ) (./specification/GameEngine.vdmpp.tex [5] [6]
-Underfull \vbox (badness 10000) detected at line 117
+Underfull \vbox (badness 10000) detected at line 124
  []
 
 ) (./specification/House.vdmpp.tex [7]
-Underfull \vbox (badness 10000) detected at line 60
+Underfull \vbox (badness 10000) detected at line 61
  []
 
-) (./specification/Player.vdmpp.tex [8]
-Underfull \vbox (badness 10000) detected at line 121
+) (./specification/Player.vdmpp.tex [8] [9]
+Underfull \vbox (badness 10000) detected at line 133
  []
 
-[9]) (./specification/Ship.vdmpp.tex
-Overfull \hbox (39.05016pt too wide) in paragraph at lines 52--53
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][] 
+) (./specification/Ship.vdmpp.tex [10] [11]
+Underfull \vbox (badness 10000) detected at line 118
  []
 
-[10]
-Underfull \vbox (badness 10000) detected at line 108
+) (./specification/Test.vdmpp.tex [12]
+Underfull \vbox (badness 10000) detected at line 109
  []
 
-) (./specification/Test.vdmpp.tex [11]
-Underfull \vbox (badness 10000) detected at line 54
- []
-
-) [12] (./battleship.aux) ) 
+[13]) [14] (./battleship.aux) ) 
 Here is how much of TeX's memory you used:
- 6642 strings out of 493848
- 96247 string characters out of 1152823
- 245928 words of memory out of 3000000
- 9202 multiletter control sequences out of 15000+50000
+ 6766 strings out of 493848
+ 98163 string characters out of 1152823
+ 244929 words of memory out of 3000000
+ 9225 multiletter control sequences out of 15000+50000
  17044 words of font info for 41 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,6n,41p,271b,1870s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.en
-c}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb><
-/usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-t
-exlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1
-/urw/courier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a
-.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb>
-Output written on battleship.pdf (12 pages, 183008 bytes).
+ 38i,6n,41p,372b,1872s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8
+r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/sha
+re/texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/f
+onts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/cou
+rier/ucrro8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></u
+sr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb>
+Output written on battleship.pdf (14 pages, 216670 bytes).
 PDF statistics:
- 831 PDF objects out of 1000 (max. 8388607)
- 611 named destinations out of 1000 (max. 500000)
+ 961 PDF objects out of 1000 (max. 8388607)
+ 709 named destinations out of 1000 (max. 500000)
  57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

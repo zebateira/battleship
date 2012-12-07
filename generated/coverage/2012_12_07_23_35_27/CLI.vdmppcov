@@ -2,11 +2,15 @@ class CLI
 	types
 	values
 	instance variables
+		public static letters : map nat1 to char := {
+			1|->'A', 2|->'B', 3|->'C', 4|->'D', 5|->'E',
+			6|->'F', 7|->'G', 8|->'H', 9|->'I',10|->'J' 
+		};
 	
-	public static WATER		: int := 0;
-	public static SHIP			: int := 1;
-	public static HIT_SHIP		: int := 2;
-	public static HIT_WATER	: int := 3;
+		public static WATER		: int := 0;
+		public static SHIP			: int := 1;
+		public static HIT_SHIP		: int := 2;
+		public static HIT_WATER	: int := 3;
 	
 	public static markers : map int to char := {
 		WATER		|-> ' ',
@@ -24,7 +28,7 @@ class CLI
 				IO`println(  "*            Battleship War Game           *");
 				IO`println(  "********************************************");
 				
-				IO`println(IO`freadval[VDMUtils`String]("res/header.txt").#2);
+				IO`println(IO`freadval[VDMUtil`String]("res/header.txt").#2);
 	
 				IO`print(  "\n************* ");
 				IO`print(p1.name);
@@ -33,30 +37,30 @@ class CLI
 				IO`println(" **************\n");
 				
 			);
-			
+
 		public static printEnd : Player ==> ()
 			printEnd (winner) == (
 				IO`print("Player ");
 				IO`print(winner.name);
 				IO`println(" is Victorious! You fought with bravery young lad! ");
 				IO`println("I shall award you with cookies and milk. Enjoy this feast to your content!\n");
-				IO`println(IO`freadval[VDMUtils`String]("res/cookies_and_milk.txt").#2);
+				IO`println(IO`freadval[VDMUtil`String]("res/cookies_and_milk.txt").#2);
 			);
-	
+
 		public static printHeaders : Player ==> ()
 			printHeaders(player) == (
 				IO`print("*** ");
 				IO`print(player.name);
 				IO`println("'s boards ***\n");
 			);
-	
+
 		public static printBoard : Board ==> ()
 			printBoard(board) == (
 				dcl marker : int := WATER;
 			
 				IO`print("   ");
 				for x = 1 to Board`BOARD_SIZE do (
-					IO`print(x); 
+					IO`print(letters(x)); 
 					IO`print(" ");
 				);
 				IO`println(" ");
@@ -90,10 +94,10 @@ class CLI
 					IO`print("|");
 					IO`println(y);
 				);
-	
+
 				IO`print("   ");
 				for x = 1 to Board`BOARD_SIZE do (
-					IO`print(x); 
+					IO`print(letters(x)); 
 					IO`print(" ");
 				);
 				IO`println(" ");
@@ -108,7 +112,7 @@ class CLI
 				IO`print("   ");
 				IO`print("           ");
 				for x = 1 to Board`BOARD_SIZE do (
-					IO`print(x); 
+					IO`print(letters(x)); 
 					IO`print(" ");
 				);
 				IO`println(" ");
@@ -141,7 +145,7 @@ class CLI
 				IO`print("   ");
 				IO`print("           ");
 				for x = 1 to Board`BOARD_SIZE do (
-					IO`print(x); 
+					IO`print(letters(x)); 
 					IO`print(" ");
 				);
 				IO`println(" ");

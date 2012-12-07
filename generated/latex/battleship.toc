@@ -1,7 +1,7 @@
 \contentsline {section}{\numberline {1}Board}{1}{section.1}
-\contentsline {section}{\numberline {2}CLI}{2}{section.2}
+\contentsline {section}{\numberline {2}CLI}{3}{section.2}
 \contentsline {section}{\numberline {3}GameEngine}{5}{section.3}
 \contentsline {section}{\numberline {4}House}{7}{section.4}
 \contentsline {section}{\numberline {5}Player}{8}{section.5}
 \contentsline {section}{\numberline {6}Ship}{10}{section.6}
-\contentsline {section}{\numberline {7}Test}{11}{section.7}
+\contentsline {section}{\numberline {7}Test}{12}{section.7}

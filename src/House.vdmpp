@@ -13,7 +13,6 @@ class House
 	public ship: Ship;
 	public board: Board;
 
-	-- Coordinates restriction 
 	inv checkCoords([x] ^ [y]);
 	
 	operations
@@ -34,6 +33,8 @@ class House
 		pre is_Board(b);
 	
 	functions
+	
+		-- Coordinates restriction: x and y must be between 1 and board size. 
 		public static checkCoords : coords -> bool
 			checkCoords(coords) ==
 				coords(X) >= 1 and coords(X) <= Board`BOARD_SIZE and

@@ -1,27 +1,33 @@
 class Player
 	types
-		
+
 	values
 
 	instance variables
+		-- Each element represents the size of a ship. (helper to generate the ships)
+		-- 4 ships with size 2
+		-- 3 ships with size 3
+		-- 2 ships with size 4
+		-- 1 ship  with size 5
 		public static sizes : seq of int := [2, 2, 2, 2, 3, 3, 3, 4, 4, 5];
 		
 		public it : int := 0;
-		public name : VDMUtils`String;
+		public name : VDMUtil`String;
 		public ships : seq of Ship;
 		public boardown : Board;
 		public boardplay : Board;
 		public playerNumber : int;
 		public coords2play : seq of House`coords;
-		public isBot : bool;
+		public isBot : bool; -- Player can be a bot (takes sequencial shots in all houses)
 		
 		inv (len ships) <= len sizes;
 		
 	operations
 	
-		public Player : VDMUtils`String * int * bool ==> Player
+		public Player : VDMUtil`String * int * bool ==> Player
 		Player(n, number, isbot) ==
 		(
+			-- helpers to generate the ships
 			dcl c : seq of House`coords, orientation: seq of int,
 				ship : Ship;
 			
@@ -30,6 +36,7 @@ class Player
 			isBot := isbot;
 			boardown := new Board(false);
 			boardplay := new Board(true);
+			
 			c := getShipsCoords();
 			orientation := getShipsOrientations();
 			
@@ -43,6 +50,7 @@ class Player
 			);
 		);
 		
+		-- Reads the ships initial coordinates from the file "res/<player_name>.shipscoords"
 		public getShipsCoords: ()  ==> seq of House`coords
 			getShipsCoords() ==
 			(
@@ -51,6 +59,7 @@ class Player
 			post forall coord in set elems RESULT &
 					House`checkCoords(coord);
 		
+		-- Reads the ships orientations from the file "res/<player_name>.orientations"
 		public getShipsOrientations: () ==> seq of int
 			getShipsOrientations() ==
 			(
@@ -59,6 +68,7 @@ class Player
 			post forall orientation in set elems RESULT &
 				Ship`checkOrientation(orientation);
 		
+		-- Reads the shots the player will make from the file "res/<player_name>.coords2play"
 		public getCoords2Play: ()  ==> seq of House`coords
 			getCoords2Play() ==
 			(
@@ -67,6 +77,7 @@ class Player
 			post forall coord in set elems RESULT &
 					House`checkCoords(coord);
 
+		-- Takes a shot
 		public play : () ==> House`coords
 			play () ==
 			(
@@ -74,13 +85,14 @@ class Player
 				
 				if isBot then coords := bot_genCoords()
 				else (
-					coords := coords2play(1);
-					coords2play := tl coords2play 
+					coords := coords2play(1); -- gets the shot to make
+					coords2play := tl coords2play -- removes shot from the available shots to make
 				);
 				
 				return coords;
 			);
 
+		-- Shot generator for the bot.
 		public bot_genCoords : () ==> House`coords
 			bot_genCoords() ==
 			(
