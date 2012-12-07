@@ -1,0 +1,33 @@
+class House
+	types
+	values
+	instance variables
+	public x: int;
+	public y: int;
+	public hit: bool := false;
+	public hasShip: bool := false;
+	public ship: Ship;
+	public board: Board;
+
+	-- Coordinate restriction 
+	-- inv x >= 0 and x <= board.size;
+	-- inv y >= 0 and y <= board.size;
+	 
+	operations
+		-- Constructor
+		public House : int * int ==> House
+			House (x1, y1) ==
+			(
+				x := x1;
+				y := y1;
+			);
+		--pre is_Board(b);
+		
+		public setBoard : Board ==> ()
+			setBoard(b) ==
+			(
+				board := b;
+			)
+		pre is_Board(b);
+		
+end House

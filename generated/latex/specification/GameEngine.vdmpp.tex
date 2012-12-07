@@ -1,0 +1,109 @@
+\begin{vdm_al}
+class GameEngine
+ types
+ values
+ instance variables
+  public static boardSize : int := 10;
+  public p1: Player;
+  public p2: Player;
+  public board1own : Board;
+  public board1play : Board;
+  public board2own : Board;
+  public board2play : Board;
+  public activePlayer: int := 1;
+  public win : bool := false;
+  
+  inv activePlayer = 1 or activePlayer = 2;
+  
+ operations
+  public GameEngine : () ==> GameEngine
+   GameEngine () ==
+   (
+    p1 := new Player("pedro", 1);
+    p2 := new Player("ze", 2);
+    
+    board1own := p1.boardown;
+    board2own := p2.boardown;
+    board1play := p1.boardplay;
+    board2play := p2.boardplay;
+   );
+
+  public let_the_slaughter_begin : () ==> ()
+   let_the_slaughter_begin () ==
+   (
+    dcl victorious : int := 0;
+    
+    CLI`printInit(p1, p2);
+    
+    while not win do
+    (
+     victorious := turn();
+    );
+    
+    CLI`printBoard(getPlayer(victorious), getPlayer(victorious).boardown);
+    
+    CLI`printEnd(getPlayer(victorious));
+   );
+
+  public turn : () ==> int
+   turn() == (
+   
+    if activePlayer = 1 then (
+     let coords = p1.play() in
+     (
+      board1play.mark(coords, board2own.hit(coords));
+      win := checkVictory(p2.ships);
+      
+      if win then return activePlayer;
+      activePlayer := 2;
+     )
+    )
+    elseif activePlayer = 2 then (
+     let coords2 = p2.play() in
+     (
+      board2play.mark(coords2, board1own.hit(coords2));
+      win := checkVictory(p1.ships);
+      if win then (*@\notcovered{return}@*) (*@\notcovered{activePlayer}@*);
+      activePlayer := 1;
+     )
+    );
+    
+    return 0;
+   );
+  
+  public checkVictory: seq of Ship ==> bool
+   checkVictory (ships) ==
+   (
+    return forall s in set elems ships & s.isDown(); 
+   );
+   
+  public getPlayer : int ==> Player
+   getPlayer(nr) ==
+    let player in set {p1, p2} be st player.playerNumber = nr in (
+      return player;
+    );
+
+
+end GameEngine
+\end{vdm_al}
+\bigskip
+\begin{longtable}{|l|r|r|}
+\hline
+Function or operation & Coverage & Calls \\
+\hline
+\hline
+GameEngine & 100.0\% & 34 \\
+\hline
+checkVictory & 100.0\% & 5970 \\
+\hline
+getPlayer & 100.0\% & 84 \\
+\hline
+let\_the\_slaughter\_begin & 100.0\% & 34 \\
+\hline
+turn & 95.6\% & 5970 \\
+\hline
+\hline
+GameEngine.vdmpp & 98.2\% & 12092 \\
+\hline
+\end{longtable}
+

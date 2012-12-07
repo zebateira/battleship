@@ -1,0 +1,68 @@
+class Player
+	types
+		public String = VDMUtils`String;
+		
+	values
+
+	instance variables
+		public static sizes : seq of int := [2, 2, 2, 2, 3, 3, 3, 4, 4, 5];
+		public it : int := 0;
+		public name : String;
+		public ships : seq of Ship;
+		public boardown : Board;
+		public boardplay : Board;
+		public playerNumber : int;
+		
+		inv (len ships) <= len sizes;
+		
+	operations
+	
+		public Player : String * int ==> Player
+		Player(n, number) ==
+		(
+			dcl c : seq of Ship`coord, orientation: seq of int,
+				ship : Ship;
+			
+			name := n;
+			playerNumber := number;
+			boardown := new Board(false);
+			boardplay := new Board(true);
+			c := get_coord();
+			orientation := get_orientation();
+			ships := [];
+			
+			for i = 1 to (len sizes) do (
+				ship := new Ship(c(i),orientation(i),sizes(i),boardown);
+				ships := ships ^ [ship];
+			);
+		);
+		
+		public get_coord: ()  ==> seq of Ship`coord
+			get_coord() ==
+			(
+				return IO`freadval[seq of Ship`coord]("src/res/" ^ name ^ ".coords").#2;				
+			)
+			post forall coord in set elems RESULT &
+				coord(1) >= 1 and coord(2) <= Board`boardSize and coord(2) >= 1 and coord(2) <= Board`boardSize;
+		
+		public get_orientation: () ==> seq of int
+			get_orientation() ==
+			(
+				return IO`freadval[seq of int]("src/res/" ^ name ^ ".or").#2;
+			)
+			post forall orientation in set elems RESULT &
+				orientation >= 0 and orientation <= 3;
+
+		public play : () ==> Ship`coord
+			play () ==
+			(
+				dcl x : int := it - (it div 10) * 10 +1,
+					y : int := (it div 10) +1;
+				
+				it := it + 1;
+				
+				return [x] ^ [y];
+			)
+			pre it <= 100
+			post RESULT(1) >= 1 and RESULT(2) <= Board`boardSize and RESULT(2) >= 1 and RESULT(2) <= Board`boardSize;
+end Player
