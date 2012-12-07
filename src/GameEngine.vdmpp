@@ -39,6 +39,8 @@ class GameEngine
 					victorious := turn();
 				);
 				
+				CLI`printBoard(getPlayer(victorious), getPlayer(victorious).boardown);
+				
 				CLI`printEnd(getPlayer(victorious));
 			);
 			

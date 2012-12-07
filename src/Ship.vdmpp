@@ -11,10 +11,10 @@ class Ship
 		public static ORIENTATION_LEFT : int := 3;
 		
 		static orientations : map int to (seq of int) := {
-			ORIENTATION_UP		|->[ 0,-1],
-			ORIENTATION_RIGHT	|->[+1, 0],
-			ORIENTATION_DOWN	|->[ 0,+1],
-			ORIENTATION_LEFT	|->[-1, 0]
+			ORIENTATION_UP		|-> [ 0,-1],
+			ORIENTATION_RIGHT	|-> [+1, 0],
+			ORIENTATION_DOWN	|-> [ 0,+1],
+			ORIENTATION_LEFT	|-> [-1, 0]
 		};
 	
 		public static id : int := 0;

@@ -2,6 +2,12 @@ class CLI
 	types
 	values
 	instance variables
+	
+	static markers : map bool to char := {
+		false |-> ' ',
+		true  |-> 'o'
+	};
+	
 	operations
 	
 	public static printInit : Player * Player ==> ()
@@ -34,14 +40,38 @@ class CLI
 		printHeader(player) == (
 			IO`print("*** ");
 			IO`print(player.name);
-			IO`println("'s board ***");
-			IO`println("");
+			IO`println("'s board ***\n");
 		);
 		
 	public static printBoard : Board ==> ()
 		printBoard(board) == (
-			IO`print("");
 		
+			IO`print("   ");
+			for x = 1 to Board`boardSize do (
+				IO`print(x); 
+				IO`print(" ");
+			);
+			IO`println(" ");
+			
+			for y = 1 to Board`boardSize do (
+				if y <> 10 then IO`print(" ");
+				IO`print(y);
+				IO`print("|");
+				for x = 1 to Board`boardSize do (
+					let house in set board.houses be st house.x = x and house.y = y in (
+						IO`print(markers(house.hasShip));
+						IO`print(" ");
+					)
+				);
+				IO`println("|");
+			);
+		
+			IO`print("   ");
+			for x = 1 to Board`boardSize * 2 do
+				IO`print("-");
+			IO`println(" ");
+			
+			
 		);
 	
 	public static printBoard : Player * Board ==> ()
@@ -49,8 +79,6 @@ class CLI
 			printHeader(player);
 			
 			printBoard(board);
-			
-			
 		)
 		
 end CLI
