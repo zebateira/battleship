@@ -18,16 +18,19 @@ class GameEngine
 		public GameEngine : int ==> GameEngine
 			GameEngine (boardSize) ==
 			(
+				dcl winner : int := 0;
+			
 				board1own := new Board(genHouses(boardSize), false);
 				board1play := new Board(genHouses(boardSize), true);
 				board2own := new Board(genHouses(boardSize), false);
 				board2play := new Board(genHouses(boardSize), true);
 				p1 := new Player("player1", board1own,board1play);
 				p2 := new Player("player2", board2own,board2play);
-				IO`print("player ");
-				IO`print(startGame());
-				IO`print("won! =D");
 				
+				winner := startGame();
+				IO`print("player ");
+				IO`print(winner);
+				IO`print(" won! =D");
 				
 			);
 
@@ -41,8 +44,6 @@ class GameEngine
 						(
 							board1play.mark(coords, board2own.hit(coords));
 							win := checkVictory(p2.ships);
-							
-							IO`println(win);
 							
 							if win then return activePlayer;
 							activePlayer := 2;

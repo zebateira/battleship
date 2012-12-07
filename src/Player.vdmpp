@@ -8,7 +8,7 @@ class Player
 
 	instance variables
 		public static sizes : seq of int := [2, 2, 2, 2, 3, 3, 3, 4, 4, 5];
-		public it : int := 1;
+		public it : int := 0;
 		public name : String;
 		public ships : seq of Ship;
 		protected boardown : Board;
@@ -52,13 +52,16 @@ class Player
 		public play : () ==> Ship`coord
 			play () ==
 			(
-				dcl x : int := it - (it div 10) * 10,
-					y : int := (it div 10) + 1;
-					
-				if x = 0 then x := it / 10;
-				if y > 10 then y := 10;
+				dcl x : int := it - (it div 10) * 10 +1,
+					y : int := (it div 10) +1;
 				
 				it := it + 1;
+				
+				if name = "player1" then (
+					IO`print(it);
+					IO`print("=>");
+					IO`println([x] ^ [y]);
+				);
 				
 				return [x] ^ [y];
 			)
