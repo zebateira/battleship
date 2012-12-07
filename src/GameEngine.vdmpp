@@ -29,12 +29,12 @@ class GameEngine
 				board2play := p2.boardplay;
 			);
 
-		public let_the_slaughter_begin : () ==> ()
-			let_the_slaughter_begin () ==
+		public let_the_slaughter_begin : bool ==> int
+			let_the_slaughter_begin (debug) ==
 			(
 				dcl victorious : int := 0, loser : int := 0;
 				
-				CLI`printInit(p1, p2);
+				if debug then CLI`printInit(p1, p2);
 				
 				while not win do
 				(
@@ -44,10 +44,12 @@ class GameEngine
 					else loser := PLAYER1;
 				);
 				
-				CLI`printBoard(getPlayer(victorious), getPlayer(victorious).boardown);
-				CLI`printBoard(getPlayer(loser), getPlayer(loser).boardown);
+				if debug then CLI`printBoard(getPlayer(victorious), getPlayer(victorious).boardown);
+				if debug then CLI`printBoard(getPlayer(loser), getPlayer(loser).boardown);
 				
-				CLI`printEnd(getPlayer(victorious));
+				if debug then CLI`printEnd(getPlayer(victorious));
+				
+				return victorious;
 			);
 
 		public turn : () ==> int

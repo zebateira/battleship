@@ -38,7 +38,7 @@ class CLI
 			IO`print(winner.name);
 			IO`println(" is Victorious! You fought with bravery young lad! ");
 			IO`println("I shall award you with cookies and milk. Enjoy this feast to your content!\n");
-			IO`println(IO`freadval[VDMUtils`String]("src/res/cookies_and_milk.txt").#2);
+			IO`println(IO`freadval[VDMUtils`String]("res/cookies_and_milk.txt").#2);
 		);
 
 	public static printHeader : Player ==> ()

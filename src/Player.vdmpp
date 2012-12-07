@@ -41,7 +41,7 @@ class Player
 		public get_coord: ()  ==> seq of House`coord
 			get_coord() ==
 			(
-				return IO`freadval[seq of House`coord]("src/res/" ^ name ^ ".coords").#2;				
+				return IO`freadval[seq of House`coord]("res/" ^ name ^ ".coords").#2;				
 			)
 			post forall coord in set elems RESULT &
 					House`checkCoords(coord);
@@ -49,7 +49,7 @@ class Player
 		public get_orientation: () ==> seq of int
 			get_orientation() ==
 			(
-				return IO`freadval[seq of int]("src/res/" ^ name ^ ".or").#2;
+				return IO`freadval[seq of int]("res/" ^ name ^ ".or").#2;
 			)
 			post forall orientation in set elems RESULT &
 				Ship`checkOrientation(orientation);
