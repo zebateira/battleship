@@ -15,7 +15,7 @@ class House
 
 	-- Coordinates restriction 
 	inv checkCoords([x] ^ [y]);
-	
+	 
 	operations
 		-- Constructor
 		public House : int * int ==> House

@@ -52,7 +52,7 @@ class Player
 				return IO`freadval[seq of int]("src/res/" ^ name ^ ".or").#2;
 			)
 			post forall orientation in set elems RESULT &
-				Ship`checkOrientation(orientation);
+				orientation >= Ship`ORIENTATION_UP and orientation <= Ship`ORIENTATION_LEFT;
 
 		public play : () ==> House`coord
 			play () ==

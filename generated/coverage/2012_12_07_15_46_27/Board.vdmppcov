@@ -40,7 +40,7 @@ class Board
 		public hit : seq of int ==> int
 			hit(coords) ==
 			(
-				let h in set houses be st (h.x = coords(House`X) and h.y = coords(House`Y)) in (
+				let h in set houses be st (h.x = coords(1) and h.y = coords(2)) in (
 					if not h.hasShip or h.hit then return MISS
 					elseif h.hasShip then
 						(
@@ -58,7 +58,7 @@ class Board
 		public mark : seq of int * int ==> ()
 			mark(coords, res) ==
 			(
-				let h in set houses be st h.x = coords(House`X) and h.y = coords(House`Y) in (
+				let h in set houses be st h.x = coords(1) and h.y = coords(2) in (
 					h.hit := true;
 					if res = HIT or res = SHIP_SUNK then
 						h.hasShip := true;
