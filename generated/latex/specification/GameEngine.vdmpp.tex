@@ -64,8 +64,8 @@ class GameEngine
    
   public getPlayer : int ==> Player
    getPlayer(nr) ==
-    (*@\notcovered{let}@*) player in set (*@\notcovered{\{}@*)(*@\notcovered{player1}@*), (*@\notcovered{player2}@*)} be st (*@\notcovered{player}@*).(*@\notcovered{playerNumber}@*) (*@\notcovered{=}@*) (*@\notcovered{nr}@*) in (
-      (*@\notcovered{return}@*) (*@\notcovered{player}@*);
+    let player in set {player1, player2} be st player.playerNumber = nr in (
+      return player;
     );
     
   public getAllBoards : () ==> set of Board
@@ -78,7 +78,7 @@ class GameEngine
    (
     dcl victorious : int := 0, loser : int := 0;
     
-    if debug then (*@\notcovered{CLI`printInit}@*)((*@\notcovered{player1}@*), (*@\notcovered{player2}@*));
+    if debug then CLI`printInit(player1, player2);
     
     while not isGameOver do
     (
@@ -89,10 +89,10 @@ class GameEngine
     else loser := PLAYER1;
     
     if debug then (
-     (*@\notcovered{CLI`printBoards}@*)((*@\notcovered{getPlayer}@*)((*@\notcovered{victorious}@*)));
-     (*@\notcovered{CLI`printBoards}@*)((*@\notcovered{getPlayer}@*)((*@\notcovered{loser}@*)));
+     CLI`printBoards(getPlayer(victorious));
+     CLI`printBoards(getPlayer(loser));
      
-     (*@\notcovered{CLI`printEnd}@*)((*@\notcovered{getPlayer}@*)((*@\notcovered{victorious}@*)));
+     CLI`printEnd(getPlayer(victorious));
     );
     
     return victorious;
@@ -112,14 +112,14 @@ checkVictory & 100.0\% & 119 \\
 \hline
 getAllBoards & 100.0\% & 1 \\
 \hline
-getPlayer & 0.0\% & 0 \\
+getPlayer & 100.0\% & 3 \\
 \hline
-let\_the\_slaughter\_begin & 63.6\% & 2 \\
+let\_the\_slaughter\_begin & 100.0\% & 2 \\
 \hline
 turn & 100.0\% & 119 \\
 \hline
 \hline
-GameEngine.vdmpp & 83.5\% & 245 \\
+GameEngine.vdmpp & 100.0\% & 248 \\
 \hline
 \end{longtable}
 

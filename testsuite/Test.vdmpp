@@ -29,7 +29,7 @@ class Test
         public static testFullGame2 : () ==> ()
         	testFullGame2() == (
 				dcl ge : GameEngine := new GameEngine("ze", false, "pedro", true),
-					victorious : int := ge.let_the_slaughter_begin(false);
+					victorious : int := ge.let_the_slaughter_begin(true);
 				
 				assertTrue(ge.isGameOver);
 				assertTrue(victorious = ge.PLAYER1);

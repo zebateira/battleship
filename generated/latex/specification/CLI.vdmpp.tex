@@ -25,139 +25,139 @@ class CLI
   public static printInit : Player * Player ==> ()
    printInit (p1, p2) == (
    
-    (*@\notcovered{IO`println}@*)((*@\notcovered{"\textbackslash n********************************************"}@*));
-    (*@\notcovered{IO`println}@*)(  (*@\notcovered{"*            Battleship War Game           *"}@*));
-    (*@\notcovered{IO`println}@*)(  (*@\notcovered{"********************************************"}@*));
+    IO`println("\n********************************************");
+    IO`println(  "*            Battleship War Game           *");
+    IO`println(  "********************************************");
     
-    (*@\notcovered{IO`println}@*)((*@\notcovered{IO`freadval}@*)[VDMUtil`String]((*@\notcovered{"res/header.txt"}@*)).#(*@\notcovered{2}@*));
+    IO`println(IO`freadval[VDMUtil`String]("res/header.txt").#2);
  
-    (*@\notcovered{IO`print}@*)(  (*@\notcovered{"\textbackslash n************* "}@*));
-    (*@\notcovered{IO`print}@*)((*@\notcovered{p1}@*).(*@\notcovered{name}@*));
-    (*@\notcovered{IO`print}@*)((*@\notcovered{" Vs "}@*));
-    (*@\notcovered{IO`print}@*)((*@\notcovered{p2}@*).(*@\notcovered{name}@*));
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" **************\textbackslash n"}@*));
+    IO`print(  "\n************* ");
+    IO`print(p1.name);
+    IO`print(" Vs ");
+    IO`print(p2.name);
+    IO`println(" **************\n");
     
    );
 
   public static printEnd : Player ==> ()
    printEnd (winner) == (
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"Player "}@*));
-    (*@\notcovered{IO`print}@*)((*@\notcovered{winner}@*).(*@\notcovered{name}@*));
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" is Victorious! You fought with bravery young lad! "}@*));
-    (*@\notcovered{IO`println}@*)((*@\notcovered{"I shall award you with cookies and milk. Enjoy this feast to your content!\textbackslash n"}@*));
-    (*@\notcovered{IO`println}@*)((*@\notcovered{IO`freadval}@*)[VDMUtil`String]((*@\notcovered{"res/cookies\_and\_milk.txt"}@*)).#(*@\notcovered{2}@*));
+    IO`print("Player ");
+    IO`print(winner.name);
+    IO`println(" is Victorious! You fought with bravery young lad! ");
+    IO`println("I shall award you with cookies and milk. Enjoy this feast to your content!\n");
+    IO`println(IO`freadval[VDMUtil`String]("res/cookies_and_milk.txt").#2);
    );
 
   public static printHeaders : Player ==> ()
    printHeaders(player) == (
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"*** "}@*));
-    (*@\notcovered{IO`print}@*)((*@\notcovered{player}@*).(*@\notcovered{name}@*));
-    (*@\notcovered{IO`println}@*)((*@\notcovered{"'s boards ***\textbackslash n"}@*));
+    IO`print("*** ");
+    IO`print(player.name);
+    IO`println("'s boards ***\n");
    );
 
   public static printBoard : Board ==> ()
    printBoard(board) == (
-    dcl marker : int := (*@\notcovered{WATER}@*);
+    dcl marker : int := WATER;
    
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"   "}@*));
-    (*@\notcovered{for}@*) x = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-     (*@\notcovered{IO`print}@*)((*@\notcovered{letters}@*)((*@\notcovered{x}@*))); 
-     (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
+    IO`print("   ");
+    for x = 1 to Board`BOARD_SIZE do (
+     IO`print(letters(x)); 
+     IO`print(" ");
     );
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" "}@*));
+    IO`println(" ");
     
-    (*@\notcovered{for}@*) y = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-     (*@\notcovered{if}@*) (*@\notcovered{y}@*) (*@\notcovered{<>}@*) (*@\notcovered{10}@*) then (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
-     (*@\notcovered{IO`print}@*)((*@\notcovered{y}@*));
-     (*@\notcovered{IO`print}@*)((*@\notcovered{"|"}@*));
-     (*@\notcovered{for}@*) x = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-      (*@\notcovered{let}@*) house in set (*@\notcovered{board}@*).(*@\notcovered{houses}@*) be st (*@\notcovered{house}@*).(*@\notcovered{x}@*) (*@\notcovered{=}@*) (*@\notcovered{x}@*) (*@\notcovered{and}@*) (*@\notcovered{house}@*).(*@\notcovered{y}@*) (*@\notcovered{=}@*) (*@\notcovered{y}@*) in (
+    for y = 1 to Board`BOARD_SIZE do (
+     if y <> 10 then IO`print(" ");
+     IO`print(y);
+     IO`print("|");
+     for x = 1 to Board`BOARD_SIZE do (
+      let house in set board.houses be st house.x = x and house.y = y in (
       
-       (*@\notcovered{if}@*) (*@\notcovered{house}@*).(*@\notcovered{hasShip}@*) then (
-        (*@\notcovered{if}@*) (*@\notcovered{house}@*).(*@\notcovered{hit}@*) then
-         (*@\notcovered{marker}@*) := (*@\notcovered{HIT\_SHIP}@*)
+       if house.hasShip then (
+        if house.hit then
+         marker := HIT_SHIP
         else
          (*@\notcovered{marker}@*) := (*@\notcovered{SHIP}@*);
        )
        else (
-        (*@\notcovered{if}@*) (*@\notcovered{house}@*).(*@\notcovered{hit}@*) then (
-         (*@\notcovered{marker}@*) := (*@\notcovered{HIT\_WATER}@*);
+        if house.hit then (
+         marker := HIT_WATER;
         )
         else (
-         (*@\notcovered{marker}@*) := (*@\notcovered{WATER}@*);
+         marker := WATER;
         )
        );
 
-       (*@\notcovered{IO`print}@*)((*@\notcovered{markers}@*)((*@\notcovered{marker}@*)));
-       (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
+       IO`print(markers(marker));
+       IO`print(" ");
       )
      );
-     (*@\notcovered{IO`print}@*)((*@\notcovered{"|"}@*));
-     (*@\notcovered{IO`println}@*)((*@\notcovered{y}@*));
+     IO`print("|");
+     IO`println(y);
     );
 
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"   "}@*));
-    (*@\notcovered{for}@*) x = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-     (*@\notcovered{IO`print}@*)((*@\notcovered{letters}@*)((*@\notcovered{x}@*))); 
-     (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
+    IO`print("   ");
+    for x = 1 to Board`BOARD_SIZE do (
+     IO`print(letters(x)); 
+     IO`print(" ");
     );
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" "}@*));
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" "}@*));
+    IO`println(" ");
+    IO`println(" ");
    );
   
  
   public static printBoardTabbed : Board ==> ()
    printBoardTabbed(board) == (
-    dcl marker : int := (*@\notcovered{WATER}@*);
+    dcl marker : int := WATER;
    
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"   "}@*));
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"           "}@*));
-    (*@\notcovered{for}@*) x = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-     (*@\notcovered{IO`print}@*)((*@\notcovered{letters}@*)((*@\notcovered{x}@*))); 
-     (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
+    IO`print("   ");
+    IO`print("           ");
+    for x = 1 to Board`BOARD_SIZE do (
+     IO`print(letters(x)); 
+     IO`print(" ");
     );
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" "}@*));
+    IO`println(" ");
     
-    (*@\notcovered{for}@*) y = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-     (*@\notcovered{IO`print}@*)((*@\notcovered{"           "}@*));
-     (*@\notcovered{if}@*) (*@\notcovered{y}@*) (*@\notcovered{<>}@*) (*@\notcovered{10}@*) then (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
-     (*@\notcovered{IO`print}@*)((*@\notcovered{y}@*));
-     (*@\notcovered{IO`print}@*)((*@\notcovered{"|"}@*));
-     (*@\notcovered{for}@*) x = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-      (*@\notcovered{let}@*) house in set (*@\notcovered{board}@*).(*@\notcovered{houses}@*) be st (*@\notcovered{house}@*).(*@\notcovered{x}@*) (*@\notcovered{=}@*) (*@\notcovered{x}@*) (*@\notcovered{and}@*) (*@\notcovered{house}@*).(*@\notcovered{y}@*) (*@\notcovered{=}@*) (*@\notcovered{y}@*) in (
+    for y = 1 to Board`BOARD_SIZE do (
+     IO`print("           ");
+     if y <> 10 then IO`print(" ");
+     IO`print(y);
+     IO`print("|");
+     for x = 1 to Board`BOARD_SIZE do (
+      let house in set board.houses be st house.x = x and house.y = y in (
       
-       (*@\notcovered{if}@*) (*@\notcovered{house}@*).(*@\notcovered{hasShip}@*) then (
-        (*@\notcovered{if}@*) (*@\notcovered{house}@*).(*@\notcovered{hit}@*) then
-         (*@\notcovered{marker}@*) := (*@\notcovered{HIT\_SHIP}@*)
+       if house.hasShip then (
+        if house.hit then
+         marker := HIT_SHIP
         else
-         (*@\notcovered{marker}@*) := (*@\notcovered{SHIP}@*);
+         marker := SHIP;
        )
-       (*@\notcovered{elseif}@*) (*@\notcovered{house}@*).(*@\notcovered{hit}@*) then (*@\notcovered{marker}@*) := (*@\notcovered{HIT\_WATER}@*);
+       elseif house.hit then (*@\notcovered{marker}@*) := (*@\notcovered{HIT\_WATER}@*);
 
-       (*@\notcovered{IO`print}@*)((*@\notcovered{markers}@*)((*@\notcovered{marker}@*)));
-       (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
-       (*@\notcovered{marker}@*) := (*@\notcovered{WATER}@*);
+       IO`print(markers(marker));
+       IO`print(" ");
+       marker := WATER;
       )
      );
-     (*@\notcovered{IO`print}@*)((*@\notcovered{"|"}@*));
-     (*@\notcovered{IO`println}@*)((*@\notcovered{y}@*));
+     IO`print("|");
+     IO`println(y);
     );
  
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"   "}@*));
-    (*@\notcovered{IO`print}@*)((*@\notcovered{"           "}@*));
-    (*@\notcovered{for}@*) x = (*@\notcovered{1}@*) to (*@\notcovered{Board`BOARD\_SIZE}@*) do (
-     (*@\notcovered{IO`print}@*)((*@\notcovered{letters}@*)((*@\notcovered{x}@*))); 
-     (*@\notcovered{IO`print}@*)((*@\notcovered{" "}@*));
+    IO`print("   ");
+    IO`print("           ");
+    for x = 1 to Board`BOARD_SIZE do (
+     IO`print(letters(x)); 
+     IO`print(" ");
     );
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" "}@*));
-    (*@\notcovered{IO`println}@*)((*@\notcovered{" "}@*));
+    IO`println(" ");
+    IO`println(" ");
    );
   
   public static printBoards : Player ==> ()
    printBoards(player) == (
-    (*@\notcovered{printHeaders}@*)((*@\notcovered{player}@*));
-    (*@\notcovered{printBoard}@*)((*@\notcovered{player}@*).(*@\notcovered{boardplay}@*));
-    (*@\notcovered{printBoardTabbed}@*)((*@\notcovered{player}@*).(*@\notcovered{boardown}@*));
+    printHeaders(player);
+    printBoard(player.boardplay);
+    printBoardTabbed(player.boardown);
    );
   
 end CLI
@@ -168,20 +168,20 @@ end CLI
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-printBoard & 0.0\% & 0 \\
+printBoard & 97.5\% & 2 \\
 \hline
-printBoardTabbed & 0.0\% & 0 \\
+printBoardTabbed & 97.7\% & 2 \\
 \hline
-printBoards & 0.0\% & 0 \\
+printBoards & 100.0\% & 2 \\
 \hline
-printEnd & 0.0\% & 0 \\
+printEnd & 100.0\% & 1 \\
 \hline
-printHeaders & 0.0\% & 0 \\
+printHeaders & 100.0\% & 2 \\
 \hline
-printInit & 0.0\% & 0 \\
+printInit & 100.0\% & 1 \\
 \hline
 \hline
-CLI.vdmpp & 13.4\% & 0 \\
+CLI.vdmpp & 98.4\% & 10 \\
 \hline
 \end{longtable}
 
