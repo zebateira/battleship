@@ -2,7 +2,7 @@ class GameEngine
 	types
 	values
 	instance variables
-		--houses : set of House;
+		public static boardSize : int := 10;
 		public p1: Player;
 		public p2: Player;
 		public board1own : Board;
@@ -15,47 +15,54 @@ class GameEngine
 		inv activePlayer = 1 or activePlayer = 2;
 		
 	operations
-		public GameEngine : int ==> GameEngine
-			GameEngine (boardSize) ==
+		public GameEngine : () ==> GameEngine
+			GameEngine () ==
 			(
-				dcl winner : int := 0;
-			
-				board1own := new Board(genHouses(boardSize), false);
-				board1play := new Board(genHouses(boardSize), true);
-				board2own := new Board(genHouses(boardSize), false);
-				board2play := new Board(genHouses(boardSize), true);
-				p1 := new Player("player1", board1own,board1play);
-				p2 := new Player("player2", board2own,board2play);
+				p1 := new Player("pedro", 1);
+				p2 := new Player("ze", 2);
 				
-				winner := startGame();
-				IO`print("player ");
-				IO`print(winner);
-				IO`print(" won! =D");
-				
+				board1own := p1.boardown;
+				board2own := p2.boardown;
+				board1play := p1.boardplay;
+				board2play := p2.boardplay;
 			);
 
-		public startGame : () ==> int
-			startGame () ==
+		public let_the_slaughter_begin : () ==> ()
+			let_the_slaughter_begin () ==
 			(
+				dcl victorious : int := 0;
+				
+				CLI`printInit(p1, p2);
+				
 				while not win do
 				(
-					if activePlayer = 1 then
-						let coords = p1.play() in
-						(
-							board1play.mark(coords, board2own.hit(coords));
-							win := checkVictory(p2.ships);
-							
-							if win then return activePlayer;
-							activePlayer := 2;
-						)
-					else
-						let coords2 = p2.play() in
-						(
-							board2play.mark(coords2, board1own.hit(coords2));
-							win := checkVictory(p1.ships);
-							if win then return activePlayer;
-							activePlayer := 1;
-						);
+					victorious := turn();
+				);
+				
+				CLI`printEnd(getPlayer(victorious));
+			);
+			
+		public turn : () ==> int
+			turn() == (
+			
+				if activePlayer = 1 then (
+					let coords = p1.play() in
+					(
+						board1play.mark(coords, board2own.hit(coords));
+						win := checkVictory(p2.ships);
+						
+						if win then return activePlayer;
+						activePlayer := 2;
+					)
+				)
+				elseif activePlayer = 2 then (
+					let coords2 = p2.play() in
+					(
+						board2play.mark(coords2, board1own.hit(coords2));
+						win := checkVictory(p1.ships);
+						if win then return activePlayer;
+						activePlayer := 1;
+					)
 				);
 				
 				return 0;
@@ -67,24 +74,11 @@ class GameEngine
 				return forall s in set elems ships & s.isDown();	
 			);
 			
-		public genHouses : int ==> set of House
-			genHouses(s) ==
-			(
-				dcl xx : set of int, yy :set of int, houses : set of House := {};
-				xx := {1,...,s};
-				yy := {1,...,s};
-				
-				for all x in set xx do
-				(
-					for all y in set yy do
-					(
-						houses := houses union {new House(x,y)};
-					)
+		public getPlayer : int ==> Player
+			getPlayer(nr) ==
+				let player in set {p1, p2} be st player.playerNumber = nr in (
+						return player;
 				);
-				
-				return houses;
-			);
 
-	functions
-	traces
+
 end GameEngine

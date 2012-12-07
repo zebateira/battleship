@@ -3,30 +3,30 @@ class Player
 		public String = VDMUtils`String;
 		
 	values
-	-- size |-> number of ships of that size
-		--public sizes : map nat1 to nat1 = {2 |-> 4, 3|->3, 4|->2,5|->1};
 
 	instance variables
 		public static sizes : seq of int := [2, 2, 2, 2, 3, 3, 3, 4, 4, 5];
 		public it : int := 0;
 		public name : String;
 		public ships : seq of Ship;
-		protected boardown : Board;
-		protected boardplay : Board;
+		public boardown : Board;
+		public boardplay : Board;
+		public playerNumber : int;
 		
 		inv (len ships) <= len sizes;
 		
 	operations
 	
-		public Player : String * Board * Board ==> Player
-		Player(n, b1,b2) ==
+		public Player : String * int ==> Player
+		Player(n, number) ==
 		(
 			dcl c : seq of Ship`coord, orientation: seq of int,
 				ship : Ship;
 			
 			name := n;
-			boardown := b1;
-			boardplay := b2;
+			playerNumber := number;
+			boardown := new Board(false);
+			boardplay := new Board(true);
 			c := get_coord();
 			orientation := get_orientation();
 			ships := [];
@@ -41,13 +41,17 @@ class Player
 			get_coord() ==
 			(
 				return IO`freadval[seq of Ship`coord]("src/res/" ^ name ^ ".coords").#2;				
-			); --TODO post : test coords
+			)
+			post forall coord in set elems RESULT &
+				coord(1) >= 1 and coord(2) <= Board`boardSize and coord(2) >= 1 and coord(2) <= Board`boardSize;
 		
 		public get_orientation: () ==> seq of int
 			get_orientation() ==
 			(
 				return IO`freadval[seq of int]("src/res/" ^ name ^ ".or").#2;
-			); --TODO post : test orientations
+			)
+			post forall orientation in set elems RESULT &
+				orientation >= 0 and orientation <= 3;
 
 		public play : () ==> Ship`coord
 			play () ==
@@ -57,17 +61,8 @@ class Player
 				
 				it := it + 1;
 				
-				if name = "player1" then (
-					IO`print(it);
-					IO`print("=>");
-					IO`println([x] ^ [y]);
-				);
-				
 				return [x] ^ [y];
 			)
 			pre it <= 100
-			post RESULT(1) >= 1 and RESULT(2) <= boardown.size and RESULT(2) >= 1 and RESULT(2) <= boardown.size;
-	
-	functions
-	traces
+			post RESULT(1) >= 1 and RESULT(2) <= Board`boardSize and RESULT(2) >= 1 and RESULT(2) <= Board`boardSize;
 end Player

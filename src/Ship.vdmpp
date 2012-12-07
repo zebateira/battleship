@@ -3,31 +3,39 @@ class Ship
 		public coord = seq of int;
 		
 	values
-		orientations : map int to (seq of int) = {0|->[0,-1],1|->[1,0],2|->[0,1],3|->[-1,0]};
 		
 	instance variables
-	public static id : int := 0;
-	public coord_init : coord;
-	public coords : set of coord := {};
-	public orientation : int := 1;
-	public hits : int := 0;
-	public size: int := 1;
-	public board: Board;
-	public my_id: int;
-	
-	-- 0 -> up
-	-- 1 -> right
-	-- 2 -> down
-	-- 3 -> left
-	inv orientation >= 0 and orientation <= 3;
-	inv len coord_init = 2;
-	inv id >= 0;
-	
-	inv card(coords) >= 0 and card(coords) <= size;
+		public static id : int := 0;
+		public coord_init : coord;
+		public coords : set of coord := {};
+		public orientation : int := 1;
+		public hits : int := 0;
+		public size: int := 1;
+		public board: Board;
+		public my_id: int;
+		
+		public static ORIENTATION_UP : int := 0;
+		public static ORIENTATION_RIGHT : int := 1;
+		public static ORIENTATION_DOWN : int := 2;
+		public static ORIENTATION_LEFT : int := 3;
+		
+		
+		static orientations : map int to (seq of int) := {
+			ORIENTATION_UP		|->[ 0,-1],
+			ORIENTATION_RIGHT	|->[+1, 0],
+			ORIENTATION_DOWN	|->[ 0,+1],
+			ORIENTATION_LEFT	|->[-1, 0]
+		};
+		
+		inv orientation >= ORIENTATION_UP and orientation <= ORIENTATION_LEFT;
+		inv len coord_init = 2;
+		inv id >= 0;
+		
+		inv card(coords) >= 0 and card(coords) <= size;
 	
 	operations
 	
-	public Ship: coord * int * int * Board ==> Ship --* Board ==> Ship
+	public Ship: coord * int * int * Board ==> Ship
 	Ship(c,o,s,b) == 
 	(
 		coord_init := c;
@@ -38,14 +46,13 @@ class Ship
 		my_id := id +1;
 		id := my_id;
 		
-		for i = 1 to size-1 do
-		(	
+		for i = 1 to size-1 do (	
 			coords := coords union {[c(1)+orientations(o)(1)*i,c(2)+orientations(o)(2)*i]};
 		);
 		
 	)
 	pre	forall x in set {c(1),c(1)+orientations(o)(1)*(s-1)}, y in set {c(2),c(2)+orientations(o)(2)*(s-1)} &
-			x >= 1 and x <= b.size and y >= 1 and y <= b.size
+			x >= 1 and x <= Board`boardSize and y >= 1 and y <= Board`boardSize
 	post fill_houses();
 	
 		
@@ -75,9 +82,4 @@ class Ship
 	
 	public isDown : () ==> bool
 		isDown() == return size = hits;
--- TODO Define operations here
-	functions
--- TODO Define functiones here
-	traces
--- TODO Define Combinatorial Test Traces here
 end Ship

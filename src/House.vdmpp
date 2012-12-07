@@ -2,12 +2,12 @@ class House
 	types
 	values
 	instance variables
-	 public x: int;
-	 public y: int;
-	 public hit: bool := false;
-	 public hasShip: bool := false;
-	 public ship: Ship;
-	 public board: Board;
+	public x: int;
+	public y: int;
+	public hit: bool := false;
+	public hasShip: bool := false;
+	public ship: Ship;
+	public board: Board;
 
 	-- Coordinate restriction 
 	-- inv x >= 0 and x <= board.size;
@@ -30,5 +30,4 @@ class House
 			)
 		pre is_Board(b);
 		
-	traces
 end House

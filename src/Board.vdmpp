@@ -2,46 +2,31 @@ class Board
 	types
 		public Houses = set of House;
 	values
+	
 	instance variables
-		public size: int := 10;
+		public static boardSize: int := 10;
 		public playable: bool;
 		public houses: Houses := {};
-		--public ships: seq of Ship := nil;
 		inv card(houses) >= 1;
-		inv size >= 1;
+		inv boardSize >= 1;
 		
 	operations
 	
-		public Board : Houses ==> Board
-			Board(h) == 
-			(	
-				houses := h;
-				
-				for all h1 in set houses do h1.setBoard(self);
-			)
-		post card(houses) = size*size;
-		
-		public Board: Houses * bool ==> Board
-			Board(h, t) == 
+		public Board: bool ==> Board
+			Board(t) == 
 			(
 				playable := t;
-				houses := h;
+				
+				for all x in set {1, ..., boardSize}  do (
+					for all y in set {1, ..., boardSize} do (
+						houses := houses union {new House(x,y)};
+					)
+				);
 				
 				for all h1 in set houses do h1.setBoard(self);
 			)
-		post card(houses) = size*size;
+		post card(houses) = boardSize * boardSize;
 		
-		public Board : int * bool * Houses ==> Board
-			Board (s, t, h) == 
-			(
-				size := s;
-				playable := t;
-				houses := h;
-				
-				for all h1 in set houses do h1.setBoard(self);
-			)
-		post card(houses) = size*size;
-
 		-- returns:
 		--0 => miss or already hit
 		--1 => hit
@@ -61,7 +46,7 @@ class Board
 					else return 0;
 				);
 			)
-			pre coords(1) >= 1 and coords(1) <= self.size and coords(2) >= 1 and coords(2) <= self.size							
+			pre coords(1) >= 1 and coords(1) <= boardSize and coords(2) >= 1 and coords(2) <= boardSize						
 			post RESULT >= 0 and RESULT <= 2;
 
 		public mark : seq of int * int ==> ()
@@ -73,5 +58,5 @@ class Board
 						h.hasShip := true;
 				);
 			)
-			pre coords(1) >= 1 and coords(1) <= self.size and coords(2) >= 1 and coords(2) <= self.size;							
+			pre coords(1) >= 1 and coords(1) <= boardSize and coords(2) >= 1 and coords(2) <= boardSize;							
 end Board
