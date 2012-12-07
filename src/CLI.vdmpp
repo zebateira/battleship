@@ -53,17 +53,17 @@ class CLI
 			dcl marker : int := WATER;
 		
 			IO`print("   ");
-			for x = 1 to Board`boardSize do (
+			for x = 1 to Board`BOARD_SIZE do (
 				IO`print(x); 
 				IO`print(" ");
 			);
 			IO`println(" ");
 			
-			for y = 1 to Board`boardSize do (
+			for y = 1 to Board`BOARD_SIZE do (
 				if y <> 10 then IO`print(" ");
 				IO`print(y);
 				IO`print("|");
-				for x = 1 to Board`boardSize do (
+				for x = 1 to Board`BOARD_SIZE do (
 					let house in set board.houses be st house.x = x and house.y = y in (
 					
 						if house.hasShip then (
@@ -85,7 +85,7 @@ class CLI
 			);
 
 			IO`print("   ");
-			for x = 1 to Board`boardSize do (
+			for x = 1 to Board`BOARD_SIZE do (
 				IO`print(x); 
 				IO`print(" ");
 			);

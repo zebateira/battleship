@@ -2,18 +2,20 @@
 class GameEngine
  types
  values
+  public static PLAYER1 : int = 1;
+  public static PLAYER2 : int = 2;
+  
  instance variables
-  public static boardSize : int := 10;
   public p1: Player;
   public p2: Player;
   public board1own : Board;
   public board1play : Board;
   public board2own : Board;
   public board2play : Board;
-  public activePlayer: int := 1;
+  public activePlayer: int := PLAYER1;
   public win : bool := false;
   
-  inv activePlayer = 1 or activePlayer = 2;
+  inv activePlayer in set {PLAYER1, PLAYER2};
   
  operations
   public GameEngine : () ==> GameEngine
@@ -31,16 +33,20 @@ class GameEngine
   public let_the_slaughter_begin : () ==> ()
    let_the_slaughter_begin () ==
    (
-    dcl victorious : int := 0;
+    dcl victorious : int := 0, loser : int := 0;
     
     CLI`printInit(p1, p2);
     
     while not win do
     (
      victorious := turn();
+     
+     if victorious = PLAYER1 then loser := PLAYER2
+     else loser := PLAYER1;
     );
     
     CLI`printBoard(getPlayer(victorious), getPlayer(victorious).boardown);
+    CLI`printBoard(getPlayer(loser), getPlayer(loser).boardown);
     
     CLI`printEnd(getPlayer(victorious));
    );
@@ -48,23 +54,23 @@ class GameEngine
   public turn : () ==> int
    turn() == (
    
-    if activePlayer = 1 then (
+    if activePlayer = PLAYER1 then (
      let coords = p1.play() in
      (
       board1play.mark(coords, board2own.hit(coords));
       win := checkVictory(p2.ships);
       
       if win then return activePlayer;
-      activePlayer := 2;
+      activePlayer := PLAYER2;
      )
     )
-    elseif activePlayer = 2 then (
+    elseif activePlayer = PLAYER2 then (
      let coords2 = p2.play() in
      (
       board2play.mark(coords2, board1own.hit(coords2));
       win := checkVictory(p1.ships);
       if win then (*@\notcovered{return}@*) (*@\notcovered{activePlayer}@*);
-      activePlayer := 1;
+      activePlayer := PLAYER1;
      )
     );
     
@@ -92,18 +98,18 @@ end GameEngine
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-GameEngine & 100.0\% & 34 \\
+GameEngine & 100.0\% & 1 \\
 \hline
-checkVictory & 100.0\% & 5970 \\
+checkVictory & 100.0\% & 199 \\
 \hline
-getPlayer & 100.0\% & 84 \\
+getPlayer & 100.0\% & 5 \\
 \hline
-let\_the\_slaughter\_begin & 100.0\% & 34 \\
+let\_the\_slaughter\_begin & 100.0\% & 1 \\
 \hline
-turn & 95.6\% & 5970 \\
+turn & 95.6\% & 199 \\
 \hline
 \hline
-GameEngine.vdmpp & 98.2\% & 12092 \\
+GameEngine.vdmpp & 98.4\% & 405 \\
 \hline
 \end{longtable}
 

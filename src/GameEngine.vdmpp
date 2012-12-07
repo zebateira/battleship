@@ -1,18 +1,20 @@
 class GameEngine
 	types
 	values
+		public static PLAYER1 : int = 1;
+		public static PLAYER2 : int = 2;
+		
 	instance variables
-		public static boardSize : int := 10;
 		public p1: Player;
 		public p2: Player;
 		public board1own : Board;
 		public board1play : Board;
 		public board2own : Board;
 		public board2play : Board;
-		public activePlayer: int := 1;
+		public activePlayer: int := PLAYER1;
 		public win : bool := false;
 		
-		inv activePlayer = 1 or activePlayer = 2;
+		inv activePlayer in set {PLAYER1, PLAYER2};
 		
 	operations
 		public GameEngine : () ==> GameEngine
@@ -38,8 +40,8 @@ class GameEngine
 				(
 					victorious := turn();
 					
-					if victorious = 1 then loser := 2
-					else loser := 1;
+					if victorious = PLAYER1 then loser := PLAYER2
+					else loser := PLAYER1;
 				);
 				
 				CLI`printBoard(getPlayer(victorious), getPlayer(victorious).boardown);
@@ -51,23 +53,23 @@ class GameEngine
 		public turn : () ==> int
 			turn() == (
 			
-				if activePlayer = 1 then (
+				if activePlayer = PLAYER1 then (
 					let coords = p1.play() in
 					(
 						board1play.mark(coords, board2own.hit(coords));
 						win := checkVictory(p2.ships);
 						
 						if win then return activePlayer;
-						activePlayer := 2;
+						activePlayer := PLAYER2;
 					)
 				)
-				elseif activePlayer = 2 then (
+				elseif activePlayer = PLAYER2 then (
 					let coords2 = p2.play() in
 					(
 						board2play.mark(coords2, board1own.hit(coords2));
 						win := checkVictory(p1.ships);
 						if win then return activePlayer;
-						activePlayer := 1;
+						activePlayer := PLAYER1;
 					)
 				);
 				

@@ -3,19 +3,18 @@ class Board
  types
   public Houses = set of House;
  values
+  public static BOARD_SIZE: int = 10;
+  
+  public static MISS : int = 0;
+  public static HIT : int = 1;
+  public static SHIP_SUNK : int = 2;
  
  instance variables
-  public static boardSize: int := 10;
-  
-  public static MISS : int := 0;
-  public static HIT : int := 1;
-  public static SHIP_SUNK : int := 2;
   
   public playable: bool;
   public houses: Houses := {};
   
   inv card(houses) >= 1;
-  inv boardSize >= 1;
   
  operations
  
@@ -24,15 +23,15 @@ class Board
    (
     playable := t;
     
-    for all x in set {1, ..., boardSize}  do (
-     for all y in set {1, ..., boardSize} do (
+    for all x in set {1, ..., BOARD_SIZE}  do (
+     for all y in set {1, ..., BOARD_SIZE} do (
       houses := houses union {new House(x,y)};
      )
     );
     
     for all h1 in set houses do h1.setBoard(self);
    )
-  post card(houses) = boardSize * boardSize;
+  post card(houses) = BOARD_SIZE * BOARD_SIZE;
   
   -- returns:
   --0 => miss or already hit
@@ -41,7 +40,7 @@ class Board
   public hit : seq of int ==> int
    hit(coords) ==
    (
-    let h in set houses be st (h.x = coords(1) and h.y = coords(2)) in (
+    let h in set houses be st (h.x = coords(House`X) and h.y = coords(House`Y)) in (
      if not h.hasShip or h.hit then return MISS
      elseif h.hasShip then
       (
@@ -53,19 +52,19 @@ class Board
      else (*@\notcovered{return}@*) (*@\notcovered{MISS}@*);
     );
    )
-   pre coords(1) >= 1 and coords(1) <= boardSize and coords(2) >= 1 and coords(2) <= boardSize      
-   post RESULT >= 0 and RESULT <= 2;
+   pre House`checkCoords(coords)   
+   post RESULT in set {MISS, HIT, SHIP_SUNK};
 
   public mark : seq of int * int ==> ()
    mark(coords, res) ==
    (
-    let h in set houses be st h.x = coords(1) and h.y = coords(2) in (
+    let h in set houses be st h.x = coords(House`X) and h.y = coords(House`Y) in (
      h.hit := true;
      if res = HIT or res = SHIP_SUNK then
       h.hasShip := true;
     );
    )
-   pre coords(1) >= 1 and coords(1) <= boardSize and coords(2) >= 1 and coords(2) <= boardSize;       
+   pre House`checkCoords(coords);       
 end Board
 \end{vdm_al}
 \bigskip
@@ -74,14 +73,14 @@ end Board
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-Board & 100.0\% & 124 \\
+Board & 100.0\% & 4 \\
 \hline
-hit & 96.9\% & 6169 \\
+hit & 95.7\% & 199 \\
 \hline
-mark & 100.0\% & 6169 \\
+mark & 100.0\% & 199 \\
 \hline
 \hline
-Board.vdmpp & 98.6\% & 12462 \\
+Board.vdmpp & 98.1\% & 402 \\
 \hline
 \end{longtable}
 

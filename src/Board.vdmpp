@@ -2,7 +2,7 @@ class Board
 	types
 		public Houses = set of House;
 	values
-		public static boardSize: int = 10;
+		public static BOARD_SIZE: int = 10;
 		
 		public static MISS : int = 0;
 		public static HIT : int = 1;
@@ -14,7 +14,6 @@ class Board
 		public houses: Houses := {};
 		
 		inv card(houses) >= 1;
-		inv boardSize >= 1;
 		
 	operations
 	
@@ -23,15 +22,15 @@ class Board
 			(
 				playable := t;
 				
-				for all x in set {1, ..., boardSize}  do (
-					for all y in set {1, ..., boardSize} do (
+				for all x in set {1, ..., BOARD_SIZE}  do (
+					for all y in set {1, ..., BOARD_SIZE} do (
 						houses := houses union {new House(x,y)};
 					)
 				);
 				
 				for all h1 in set houses do h1.setBoard(self);
 			)
-		post card(houses) = boardSize * boardSize;
+		post card(houses) = BOARD_SIZE * BOARD_SIZE;
 		
 		-- returns:
 		--0 => miss or already hit

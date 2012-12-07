@@ -36,7 +36,7 @@ class House
 	functions
 		public static checkCoords : coord -> bool
 			checkCoords(coords) ==
-				coords(X) >= 1 and coords(X) <= Board`boardSize and
-				coords(Y) >= 1 and coords(Y) <= Board`boardSize;
+				coords(X) >= 1 and coords(X) <= Board`BOARD_SIZE and
+				coords(Y) >= 1 and coords(Y) <= Board`BOARD_SIZE;
 	
 end House

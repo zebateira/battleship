@@ -22,7 +22,7 @@ class Player
   public Player : String * int ==> Player
   Player(n, number) ==
   (
-   dcl c : seq of Ship`coord, orientation: seq of int,
+   dcl c : seq of House`coord, orientation: seq of int,
     ship : Ship;
    
    name := n;
@@ -39,13 +39,13 @@ class Player
    );
   );
   
-  public get_coord: ()  ==> seq of Ship`coord
+  public get_coord: ()  ==> seq of House`coord
    get_coord() ==
    (
-    return IO`freadval[seq of Ship`coord]("src/res/" ^ name ^ ".coords").#2;    
+    return IO`freadval[seq of House`coord]("src/res/" ^ name ^ ".coords").#2;    
    )
    post forall coord in set elems RESULT &
-    coord(1) >= 1 and coord(2) <= Board`boardSize and coord(2) >= 1 and coord(2) <= Board`boardSize;
+     House`checkCoords(coord);
   
   public get_orientation: () ==> seq of int
    get_orientation() ==
@@ -53,9 +53,9 @@ class Player
     return IO`freadval[seq of int]("src/res/" ^ name ^ ".or").#2;
    )
    post forall orientation in set elems RESULT &
-    orientation >= 0 and orientation <= 3;
+    Ship`checkOrientation(orientation);
 
-  public play : () ==> Ship`coord
+  public play : () ==> House`coord
    play () ==
    (
     dcl x : int := it - (it div 10) * 10 +1,
@@ -66,7 +66,7 @@ class Player
     return [x] ^ [y];
    )
    pre it <= 100
-   post RESULT(1) >= 1 and RESULT(2) <= Board`boardSize and RESULT(2) >= 1 and RESULT(2) <= Board`boardSize;
+   post House`checkCoords(RESULT);
 
 end Player
 \end{vdm_al}
@@ -76,16 +76,16 @@ end Player
 Function or operation & Coverage & Calls \\
 \hline
 \hline
-Player & 100.0\% & 62 \\
+Player & 100.0\% & 2 \\
 \hline
-get\_coord & 100.0\% & 62 \\
+get\_coord & 100.0\% & 2 \\
 \hline
-get\_orientation & 100.0\% & 62 \\
+get\_orientation & 100.0\% & 2 \\
 \hline
-play & 100.0\% & 6169 \\
+play & 100.0\% & 199 \\
 \hline
 \hline
-Player.vdmpp & 100.0\% & 6355 \\
+Player.vdmpp & 100.0\% & 205 \\
 \hline
 \end{longtable}
 
