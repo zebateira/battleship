@@ -6,6 +6,7 @@ class Player
 
 	instance variables
 		public static sizes : seq of int := [2, 2, 2, 2, 3, 3, 3, 4, 4, 5];
+		
 		public it : int := 0;
 		public name : String;
 		public ships : seq of Ship;
