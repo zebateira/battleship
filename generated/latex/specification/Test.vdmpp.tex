@@ -1,0 +1,55 @@
+\begin{vdm_al}
+class Test
+ operations
+ 
+  --Utils
+     public static assertTrue : bool ==> ()
+         assertTrue(expectedTrue) == return
+     pre expectedTrue;
+     
+     public static runAllTests : () ==> ()
+        runAllTests () == (
+         testFullGame1();
+         testFullGame2();
+        );
+        
+        -- Tests
+        public static testFullGame1 : () ==> ()
+         testFullGame1() == (
+    dcl ge : GameEngine := new GameEngine("ze", true, "pedro", false),
+     victorious : int := ge.let_the_slaughter_begin(true);
+    
+    assertTrue(ge.win);
+    assertTrue(victorious = ge.PLAYER2);
+   );
+        
+        public static testFullGame2 : () ==> ()
+         testFullGame2() == (
+    dcl ge : GameEngine := new GameEngine("ze", false, "pedro", true),
+     victorious : int := ge.let_the_slaughter_begin(true);
+    
+    assertTrue(ge.win);
+    assertTrue(victorious = ge.PLAYER1);
+   );
+        
+end Test
+\end{vdm_al}
+\bigskip
+\begin{longtable}{|l|r|r|}
+\hline
+Function or operation & Coverage & Calls \\
+\hline
+\hline
+assertTrue & 100.0\% & 4 \\
+\hline
+runAllTests & 100.0\% & 1 \\
+\hline
+testFullGame1 & 100.0\% & 1 \\
+\hline
+testFullGame2 & 100.0\% & 1 \\
+\hline
+\hline
+Test.vdmpp & 100.0\% & 7 \\
+\hline
+\end{longtable}
+
